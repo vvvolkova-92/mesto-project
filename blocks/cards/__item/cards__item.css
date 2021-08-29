@@ -1,0 +1,44 @@
+.cards__item {
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #fff;
+  max-width: 282px;
+  min-height: 361px;
+}
+
+@media (max-width : 917px) {
+
+  .cards__item {
+    border-radius: 15px;
+    max-width: 430px;
+  }  
+
+} 
+
+@media (max-width : 618px) {
+
+  .cards__item {
+    border-radius: 18px;
+    max-width: 570px;
+  }  
+
+} 
+
+@media (max-width : 425px) {
+
+  .cards__item {
+    border-radius: 10px;
+    max-width: 382px;
+  }  
+
+} 
+
+@media (max-width : 320px) {
+
+  .cards__item {
+    max-width: 282px;
+    max-height: 361px;
+    padding-bottom: 0;
+  }  
+
+} 

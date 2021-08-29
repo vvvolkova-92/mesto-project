@@ -1,0 +1,27 @@
+.content_style_page {
+  margin: 0 auto;
+}
+
+@media (max-width : 1279px) {
+
+  .content_style_page {
+    max-width: calc(100% - 120px);
+  }  
+
+} 
+
+@media (max-width : 1000px) {
+
+  .content_style_page {
+    max-width: calc(100% - 38px);
+  }  
+
+} 
+
+@media (max-width : 425px) {
+
+  .content_style_page {
+    max-width: 100%;
+  } 
+
+}

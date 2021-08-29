@@ -1,0 +1,12 @@
+.content_style_cards {
+    margin: 0 auto;
+    padding: 50px 0 0 0;
+}
+
+@media (max-width : 320px) {
+
+  .content_style_cards {
+    padding-top: 36px;
+  }  
+
+}

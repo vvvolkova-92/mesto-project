@@ -1,0 +1,27 @@
+.popup__close-img {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 32px;
+  height: 32px;
+  background-image: url(../../../images/close.svg);
+  z-index: 10;
+  background-size: contain;
+}
+
+.popup__close-img:hover {
+  opacity: .6;
+  transition: opacity .5s ease-in-out;
+}
+
+@media (max-width : 536px) {
+
+  .popup__close-img {
+    width: 20px;
+    height: 20px;
+    top: -36px;
+    right: 0;
+  }
+
+} 
+

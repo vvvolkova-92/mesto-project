@@ -1,0 +1,25 @@
+.cards__caption {
+  margin: 25px 15px 25px 21px; /* какой-то из маргинов не верный, но в фигме макет не корректный, отступы разные в блоках, подбирала на глаз */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 246px;
+}
+
+/* потянуть для больших карточек */
+@media (max-width : 917px) {
+
+  .cards__caption {
+    max-width: 86%;
+  }  
+
+} 
+
+@media (max-width : 320px) {
+
+  .cards__caption {
+    margin: 25px 15px 31px 21px;
+    max-width: 246px;
+  }  
+
+} 

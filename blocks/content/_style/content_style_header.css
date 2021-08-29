@@ -1,0 +1,12 @@
+.content_style_header {
+  padding: 45px 0 41px;
+  margin: 0 auto;
+}
+
+@media (max-width : 320px) {
+
+  .content_style_header {
+    padding: 28px 0 31.6px;
+  } 
+
+}

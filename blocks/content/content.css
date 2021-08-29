@@ -1,0 +1,19 @@
+.content {
+  max-width: 880px;
+}
+
+@media (max-width : 425px) {
+
+.content {
+    max-width: 100%;
+  }
+    
+}
+
+@media (max-width : 320px) {
+
+  .content {
+    max-width: 320px;
+  }
+
+}

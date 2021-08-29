@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- заполнить -->
+  <meta name="description" content="Сайт о путешествиях по России">
+  <meta name="keywords" content="travel, путешествия, внутренний туризм">
+  <meta name="author" content="Vilo4ka">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Места</title>
+  <!-- заполнить енд -->
+</head>
+
+<body class="page content content_style_page">
+  <header class="header content content_style_header">
+    <div class="header__logo"></div>
+  </header>
+  <main class="content content_style_main">
+    <section class="profile">
+      <div class="profile__info-full">
+        <img src="images/avatar.jpg" alt="Фото в профиле" class="profile__photo">
+        <div class="profile__info">
+          <div class="profile__info-first-line">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="button button_type_edit" type="button"></button>
+          </div>
+          <p class="profile__activity">Исследователь океана</p>
+        </div>
+      </div>
+      <button class="button button_type_add" type="button"></button>
+    </section>
+    <section class="cards content content_style_cards">
+      <ul class="cards__items">
+        <li class="cards__item">
+          <img src="images/gallery/1-castle-combe.jpeg" alt="Изображение в карточке галереи" class="cards__image">
+          <div class="cards__caption">
+            <h2 class="cards__item-name">Castle Combe</h2>
+            <button class="button button_type_like" type="button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="images/gallery/2-clovelly.jpeg" alt="Изображение в карточке галереи" class="cards__image">
+          <div class="cards__caption">
+            <h2 class="cards__item-name">Clovelly</h2>
+            <button class="button button_type_like" type="button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="images/gallery/3-dingle.jpeg" alt="Изображение в карточке галереи" class="cards__image">
+          <div class="cards__caption">
+            <h2 class="cards__item-name">Dingle</h2>
+            <button class="button button_type_like" type="button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="images/gallery/4-westport.jpeg" alt="Изображение в карточке галереи" class="cards__image">
+          <div class="cards__caption">
+            <h2 class="cards__item-name">Westport</h2>
+            <button class="button button_type_like" type="button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="images/gallery/5-Helmsley.jpeg" alt="Изображение в карточке галереи" class="cards__image">
+          <div class="cards__caption">
+            <h2 class="cards__item-name">Helmsley</h2>
+            <button class="button button_type_like" type="button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="images/gallery/6-Castleton.jpeg" alt="Изображение в карточке галереи" class="cards__image">
+          <div class="cards__caption">
+            <h2 class="cards__item-name">Castleton</h2>
+            <button class="button button_type_like" type="button"></button>
+          </div>
+        </li>
+      </ul> 
+    </section>
+  </main>
+  <footer class="footer content content_style_footer">
+    <p class="footer__copyright">&copy; 2021 Vilo4ka</p>
+  </footer>
+  <div class="popup">  <!-- popup_opened Позиционируйте попап фиксированно по центру экрана и задайте окну полупрозрачный чёрный фон -->
+    <div class="popup__container">  <!-- Внутри него расположите само окно с формой popup__container, спозиционированное по центру.-->
+      <button type="button" class="button button_type_close-window"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form action="index.html" method="post" class="form" name="window-profile-edit">
+        <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя"> <!-- поле ввода для имени жав-ив который -->
+        <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность"> <!-- поле ввода для описания деятельности-->
+        <button type="submit" class="button button_type_save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+.button_type_like {
+  border: none;
+  background-image: url(../../../images/heart.svg);
+  background-size: contain;
+  background-position: bottom;
+  width: 22px;
+  height: 19px;
+  background-color: #fff;
+}
+
+.button_type_like:active, .button_type_like:visited {
+  background-image: url(../../../images/heart_active.svg);
+}
+
+/* увеличить/уменьшить сердце в карточках разного рр */
+@media (max-width : 917px) {
+
+  .button_type_like {
+    width: 33px;
+    height: 28px;
+  } 
+
+} 
+
+@media (max-width : 710px) {
+
+  .button_type_like {
+    width: 22px;
+    height: 19px;
+  } 
+
+} 
+
+@media (max-width : 618px) {
+
+  .button_type_like {
+    width: 33px;
+    height: 28px;
+  } 
+  
+} 
+
+@media (max-width : 425px) {
+
+  .button_type_like {
+    width: 22px;
+    height: 19px;
+  } 
+
+} 

@@ -1,0 +1,49 @@
+@import url(../vendor/normalize.css);
+/* Подлючаем стили шрифтов */
+@import url(../vendor/fonts/fonts.css);
+/* body */
+@import url(../blocks/page/page.css);
+/* хедер */
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+/* главный контент */
+@import url(../blocks/content/content.css);
+@import url(../blocks/content/_style/content_style_header.css);
+@import url(../blocks/content/_style/content_style_footer.css);
+@import url(../blocks/content/_style/content_style_cards.css);
+@import url(../blocks/content/_style/content_style_main.css);
+@import url(../blocks/content/_style/content_style_page.css);
+/* блок профайл */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__info-full/profile__info-full.css);
+@import url(../blocks/profile/__photo/profile__photo.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__activity/profile__activity.css);
+@import url(../blocks/profile/__info-first-line/profile__info-first-line.css);
+/* карточки */
+@import url(../blocks/cards/cards.css);
+@import url(../blocks/cards/__items/cards__items.css);
+@import url(../blocks/cards/__item/cards__item.css);
+@import url(../blocks/cards/__image/cards__image.css);
+@import url(../blocks/cards/__item-name/cards__item-name.css);
+@import url(../blocks/cards/__caption/cards__caption.css);
+/* кнопки */
+@import url(../blocks/button/button.css);
+@import url(../blocks/button/_type/button_type_add.css);
+@import url(../blocks/button/_type/button_type_edit.css);
+@import url(../blocks/button/_type/button_type_like.css);
+@import url(../blocks/button/_type/button_type_save.css);
+@import url(../blocks/button/_type/button_type_close-window.css);
+/* футер */
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+/* для формы */
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__item/form__item.css);
+@import url(../blocks/form/__item/_element/form__item_element_profile-activity.css);
+/* всплывающее окно */
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__title/popup__title.css);
+

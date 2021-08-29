@@ -1,0 +1,64 @@
+.cards__item-name {
+  max-width: 212px;
+  white-space: nowrap; /*запрет переноса строк */
+  overflow: hidden; /*скрыть лишак */
+  text-overflow: ellipsis; /*добавить 3 точки */
+  padding: 0;
+  margin: 0;
+/* для шрифта */
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+/* разные размеры для заголовком карточек разного рр. TODO будет время подобрать размеры %*/
+@media (max-width : 917px) {
+
+  .cards__item-name {
+    font-size: 35px;
+    line-height: 120%;
+    max-width: 350px;
+  }  
+
+} 
+
+@media (max-width : 710px) {
+
+  .cards__item-name {
+    font-size: 24px;
+    line-height: 29px;
+    max-width: 350px;
+  }  
+
+} 
+
+@media (max-width : 618px) {
+
+  .cards__item-name {
+    font-size: 35px;
+    line-height: 120%;
+    max-width: 500px;
+  }  
+
+} 
+
+@media (max-width : 425px) {
+
+  .cards__item-name {
+    font-size: 24px;
+    line-height: 29px;
+    max-width: 350px;
+  }  
+
+} 
+
+@media (max-width : 320px) {
+
+  .cards__item-name {
+    max-width: 212px;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+  }  
+
+} 
