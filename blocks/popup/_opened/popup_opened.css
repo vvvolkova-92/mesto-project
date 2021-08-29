@@ -1,5 +1,6 @@
 .popup_opened {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* плавное открытие окна */
+  visibility:visible;
+  opacity:1;
+  transition-delay:0s;
 }
