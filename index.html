@@ -33,7 +33,7 @@
     </section>
     <section class="cards content content_style_cards">
       <ul class="cards__items">
-        <li class="cards__item">
+        <!-- <li class="cards__item">
           <img src="images/gallery/1-castle-combe.jpeg" alt="Изображение в карточке галереи" class="cards__image">
           <div class="cards__caption">
             <h2 class="cards__item-name">Castle Combe</h2>
@@ -74,7 +74,7 @@
             <h2 class="cards__item-name">Castleton</h2>
             <button class="button button_type_like" type="button"></button>
           </div>
-        </li>
+        </li> -->
       </ul> 
     </section>
   </main>
@@ -98,12 +98,21 @@
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Добавить место</h2>
       <form action="index.html" method="post" class="form" name="window-cards-add">
-        <input type="text" class="form__item form__item_element_cards-name" placeholder="Имя"> <!-- поле ввода для имени жав-ив который -->
-        <input type="text" class="form__item form__item_element_cards-link" placeholder="Деятельность"> <!-- поле ввода для описания деятельности-->
-        <button type="submit" class="button button_type_add">Создать</button>
+        <input type="text" class="form__item form__item_element_cards-name" placeholder="Название"> <!-- поле ввода для имени жав-ив который -->
+        <input type="text" class="form__item form__item_element_cards-link" placeholder="Ссылка на картинку"> <!-- поле ввода для описания деятельности-->
+        <button type="submit" class="button button_type_save">Создать</button>
       </form>
     </div>
   </div>
+  <template id="card">
+    <li class="cards__item">
+      <img src="" alt="" class="cards__image">
+      <div class="cards__caption">
+        <h2 class="cards__item-name"></h2>
+        <button class="button button_type_like" type="button"></button>
+      </div>
+    </li>
+  </template>
   <script src="pages/script.js"></script>
 </body>
 </html>
