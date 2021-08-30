@@ -81,6 +81,7 @@
   <footer class="footer content content_style_footer">
     <p class="footer__copyright">&copy; 2021 Vilo4ka</p>
   </footer>
+   <!-- попал для редактирования профайла -->
   <div class="popup">  <!-- popup_opened Позиционируйте попап фиксированно по центру экрана и задайте окну полупрозрачный чёрный фон -->
     <div class="popup__container">  <!-- Внутри него расположите само окно с формой popup__container, спозиционированное по центру.-->
       <button type="button" class="button button_type_close-window"></button>
@@ -92,6 +93,18 @@
       </form>
     </div>
   </div>
+     <!-- попал для карточек -->
+     <div class="popup">  <!-- popup_opened Позиционируйте попап фиксированно по центру экрана и задайте окну полупрозрачный чёрный фон -->
+      <div class="popup__container">  <!-- Внутри него расположите само окно с формой popup__container, спозиционированное по центру.-->
+        <button type="button" class="button button_type_close-window"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form action="index.html" method="post" class="form" name="window-cards-edit">
+          <input type="text" class="form__item form__item_element_cards-name" placeholder="Название"> <!-- поле ввода для имени жав-ив который -->
+          <input type="text" class="form__item form__item_element_cards-link" placeholder="Ссылка на картинку"> <!-- поле ввода для описания деятельности-->
+          <button type="submit" class="button button_type_save">Создать</button>
+        </form>
+      </div>
+    </div>
   <script src="pages/script.js"></script>
 </body>
 </html>

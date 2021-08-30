@@ -4,8 +4,7 @@
   align-items: center;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s linear 0.5s,opacity 0.5s linear;
-
+  transition: all .8s ease 0s;
   /* тень фоном */
   position: fixed; 
   /* заливка 50% */
