@@ -92,6 +92,18 @@
       </form>
     </div>
   </div>
+
+  <div class="popup">  <!-- popup_opened Позиционируйте попап фиксированно по центру экрана и задайте окну полупрозрачный чёрный фон -->
+    <div class="popup__container">  <!-- Внутри него расположите само окно с формой popup__container, спозиционированное по центру.-->
+      <button type="button" class="button button_type_close-window"></button>
+      <h2 class="popup__title">Добавить место</h2>
+      <form action="index.html" method="post" class="form" name="window-cards-add">
+        <input type="text" class="form__item form__item_element_cards-name" placeholder="Имя"> <!-- поле ввода для имени жав-ив который -->
+        <input type="text" class="form__item form__item_element_cards-link" placeholder="Деятельность"> <!-- поле ввода для описания деятельности-->
+        <button type="submit" class="button button_type_add">Создать</button>
+      </form>
+    </div>
+  </div>
   <script src="pages/script.js"></script>
 </body>
 </html>
