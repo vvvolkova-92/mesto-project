@@ -13,6 +13,10 @@ let cards = {
 const formProfileEdit = document.querySelectorAll('form').item(0); //получила форму редактирования профиля
 let nameInput = formProfileEdit.querySelector('.form__item_element_profile-name'), //инпут имя
 activityInput = formProfileEdit.querySelector('.form__item_element_profile-activity'); //инпут деятельности
+const formCardAdd = document.querySelectorAll('form').item(1); //получила форму редактирования профиля
+let cardnameInput = formCardAdd.querySelector('.form__item_element_cards-nameplace'), //инпут название места
+linkInput = formCardAdd.querySelector('.form__item_element_cards-link'); //ссылка на картинку
+console.log(linkInput);
 //функции
 
 //функция открытия окна
@@ -29,7 +33,25 @@ function addCard(cardName, cardurl) {
   const cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
   cardElement.querySelector('.cards__item-name').textContent = cardName;
   cardElement.querySelector('.cards__image').src = cardurl;
-  cardsList.append(cardElement);
+  cardsList.prepend(cardElement);
+}
+// функция изменения имени при нажатии на кнопку
+function changeProfile(evt) {
+  evt.preventDefault(); 
+  document.querySelector('.profile__name').textContent = nameInput.value; //profileName profileActivity глобальные не работает из-за квериселектор, не живая коллекция и данные не обновляются
+  document.querySelector('.profile__activity').textContent = activityInput.value;
+}
+
+// функция добавления карточки новой НЕ ВЕРНАЯ!!!!!!!!!!!!!
+function newCard(evt) {
+  evt.preventDefault(); 
+  cards.name[cards.name.length] = cardnameInput.value;
+  let newCardName = cards.name[cards.name.length-1];
+  cards.url[cards.url.length] = linkInput.value;
+  let newCardUrl = cards.url[cards.url.length-1];
+  addCard(newCardName, newCardUrl);
+  closePopup(cardsAddPopup);
+  console.log(cards);
 }
 
 //обработчики
@@ -52,7 +74,7 @@ buttonProfileEdit.addEventListener('click', () => {
 buttonCardsAdd.addEventListener('click', () => {
   openPopup(cardsAddPopup); //вызов ф-ии
   buttonsClose[1].addEventListener('click', () => { //функция закрытия окна
-    closePopup(cardsAddPopup);
+    closePopup(profileEditPopup);
   });
 });
 
@@ -61,10 +83,13 @@ for(let i = 0; i < cards.name.length; i++) {
   addCard(cards.name[i], cards.url[i]);
 }
 
-function formSubmitHandler (evt) {
-    evt.preventDefault(); 
-    document.querySelector('.profile__name').textContent = nameInput.value; //profileName profileActivity глобальные не работает из-за квериселектор, не живая коллекция и данные не обновляются
-    document.querySelector('.profile__activity').textContent = activityInput.value;
-}
 
-formProfileEdit.addEventListener('submit', formSubmitHandler);
+formProfileEdit.addEventListener('submit', changeProfile);
+formCardAdd.addEventListener('submit', newCard);
+console.log(document.querySelector('.button_type_like'));
+let buttonsLike = document.querySelectorAll('.button_type_like');
+for(let i=0; i <buttonsLike.length; i++) {
+  buttonsLike[i].addEventListener('click', (evt) => {
+    evt.target.classList.toggle('button_type_save');
+});
+};
