@@ -34,6 +34,10 @@ function addCard(cardName, cardurl) {
   cardElement.querySelector('.cards__item-name').textContent = cardName;
   cardElement.querySelector('.cards__image').src = cardurl;
   cardsList.prepend(cardElement);
+  let buttonLike = document.querySelector('.button_type_like');
+  buttonLike.addEventListener('click', (evt) => {
+          evt.target.classList.toggle('button_type_like-active');
+      });
 }
 // функция изменения имени при нажатии на кнопку
 function changeProfile(evt) {
@@ -42,7 +46,7 @@ function changeProfile(evt) {
   document.querySelector('.profile__activity').textContent = activityInput.value;
 }
 
-// функция добавления карточки новой НЕ ВЕРНАЯ!!!!!!!!!!!!!
+// функция добавления карточки новой 
 function newCard(evt) {
   evt.preventDefault(); 
   cards.name[cards.name.length] = cardnameInput.value;
@@ -86,10 +90,14 @@ for(let i = 0; i < cards.name.length; i++) {
 
 formProfileEdit.addEventListener('submit', changeProfile);
 formCardAdd.addEventListener('submit', newCard);
-console.log(document.querySelector('.button_type_like'));
-let buttonsLike = document.querySelectorAll('.button_type_like');
-for(let i=0; i <buttonsLike.length; i++) {
-  buttonsLike[i].addEventListener('click', (evt) => {
-    evt.target.classList.toggle('button_type_save');
-});
-};
+
+// function like() {
+//   let buttonsLike = document.querySelectorAll('.button_type_like');
+//   for(let i=0; i <buttonsLike.length; i++) {
+//     buttonsLike[i].addEventListener('click', (evt) => {
+//       evt.target.classList.toggle('button_type_like-active');
+//   });
+//   };
+//   console.log(buttonsLike);
+// }
+// like();

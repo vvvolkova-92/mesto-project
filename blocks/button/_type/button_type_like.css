@@ -8,10 +8,6 @@
   background-color: #fff;
 }
 
-.button_type_like:active, .button_type_like:visited {
-  background-image: url(../../../images/heart_active.svg);
-}
-
 /* увеличить/уменьшить сердце в карточках разного рр */
 @media (max-width : 917px) {
 

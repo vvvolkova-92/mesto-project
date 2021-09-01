@@ -1,0 +1,4 @@
+.button_type_like-active {
+  background-image: url(../../../images/heart_active.svg);
+  opacity: 1;
+}
