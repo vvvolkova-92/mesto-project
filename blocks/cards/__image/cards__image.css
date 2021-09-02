@@ -5,6 +5,7 @@
   object-fit: cover;
   object-position: center top;
   border-radius: 10px 10px 0 0;
+  cursor: pointer;
 }
 
 @media (max-width : 917px) {

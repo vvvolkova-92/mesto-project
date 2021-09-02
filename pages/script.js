@@ -1,11 +1,14 @@
 //объявление переменных
 const buttonProfileEdit = document.querySelector('.button_type_edit'), //получила кнопку редактирования
-buttonCardsAdd = document.querySelector('.button_type_add'), //получила кнопку редактирования
+buttonCardsAdd = document.querySelector('.button_type_add'), //получила кнопку добавления карточки
 popups = document.querySelectorAll('.popup'), //выбрала все модальные окна
 buttonsClose = document.querySelectorAll('.button_type_close-window'), //получила кнопки закрытия окон
 profileEditPopup = popups[0], // определила окно редактирования профайла
-cardsAddPopup = popups[1]; // определила окно редактирования профайла
+cardsAddPopup = popups[1], // определила окно редактирования профайла
+imageOpenPopup = popups[2]; // определила окно редактирования профайла
 const cardsList = document.querySelector('.cards__items');
+console.log(imageOpenPopup);
+//данные для карточек
 let cards = {
   name: ['Castle Combe', 'Clovelly', 'Dingle', 'Westport', 'Helmsley', 'Castleton'],
   url: ['images/gallery/1-castle-combe.jpeg', 'images/gallery/2-clovelly.jpeg', 'images/gallery/3-dingle.jpeg','images/gallery/4-westport.jpeg', 'images/gallery/5-Helmsley.jpeg', 'images/gallery/6-Castleton.jpeg']
@@ -17,6 +20,7 @@ const formCardAdd = document.querySelectorAll('form').item(1); //получил�
 let cardnameInput = formCardAdd.querySelector('.form__item_element_cards-nameplace'), //инпут название места
 linkInput = formCardAdd.querySelector('.form__item_element_cards-link'); //ссылка на картинку
 console.log(linkInput);
+
 //функции
 
 //функция открытия окна
@@ -29,21 +33,51 @@ function closePopup(popup) {
 }
 //функция заполнение карточками при загрузке
 function addCard(cardName, cardurl) {
+  //заполнение по шаблону
   const cardTemplate = document.querySelector('#card').content;
   const cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
   cardElement.querySelector('.cards__item-name').textContent = cardName;
   cardElement.querySelector('.cards__image').src = cardurl;
+  //добавление карточки в начало
   cardsList.prepend(cardElement);
+  //для лайка
   let buttonLike = document.querySelector('.button_type_like');
   buttonLike.addEventListener('click', (evt) => {
           evt.target.classList.toggle('button_type_like-active');
       });
+  // для удаления
+  let buttonDelete = document.querySelector('.button_type_delete');
+  buttonDelete.addEventListener('click', () => {
+  const cardItem = buttonDelete.closest('.cards__item');
+  cardItem.remove();
+});
+
+  //открытие изображения
+  let cardImage = document.querySelector('.cards__image');
+
+  cardImage.addEventListener('click', () => {
+    let cardItemName = document.querySelector('.cards__item-name');
+    let popupImageName = document.querySelector('.popup-image__caption');
+    let popupImage = document.querySelector('.popup-image');
+    popupImage.src = cardImage.src;
+    popupImageName.textContent = cardItemName.textContent;
+    openPopup(imageOpenPopup);
+  });
 }
+
+//заполнение карточками
+function cardsLoad() {
+  for(let i = 0; i < cards.name.length; i++) {
+    addCard(cards.name[i], cards.url[i]);
+  }
+}
+
 // функция изменения имени при нажатии на кнопку
 function changeProfile(evt) {
   evt.preventDefault(); 
   document.querySelector('.profile__name').textContent = nameInput.value; //profileName profileActivity глобальные не работает из-за квериселектор, не живая коллекция и данные не обновляются
   document.querySelector('.profile__activity').textContent = activityInput.value;
+  closePopup(profileEditPopup);
 }
 
 // функция добавления карточки новой 
@@ -55,7 +89,6 @@ function newCard(evt) {
   let newCardUrl = cards.url[cards.url.length-1];
   addCard(newCardName, newCardUrl);
   closePopup(cardsAddPopup);
-  console.log(cards);
 }
 
 //обработчики
@@ -82,22 +115,8 @@ buttonCardsAdd.addEventListener('click', () => {
   });
 });
 
-//заполнение карточками
-for(let i = 0; i < cards.name.length; i++) {
-  addCard(cards.name[i], cards.url[i]);
-}
 
-
+cardsLoad();
 formProfileEdit.addEventListener('submit', changeProfile);
 formCardAdd.addEventListener('submit', newCard);
 
-// function like() {
-//   let buttonsLike = document.querySelectorAll('.button_type_like');
-//   for(let i=0; i <buttonsLike.length; i++) {
-//     buttonsLike[i].addEventListener('click', (evt) => {
-//       evt.target.classList.toggle('button_type_like-active');
-//   });
-//   };
-//   console.log(buttonsLike);
-// }
-// like();

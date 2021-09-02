@@ -81,20 +81,21 @@
   <footer class="footer content content_style_footer">
     <p class="footer__copyright">&copy; 2021 Vilo4ka</p>
   </footer>
-  <div class="popup">  <!-- popup_opened Позиционируйте попап фиксированно по центру экрана и задайте окну полупрозрачный чёрный фон -->
-    <div class="popup__container">  <!-- Внутри него расположите само окно с формой popup__container, спозиционированное по центру.-->
+  <!-- всполывающее окно для редактирования профиля -->
+  <div class="popup"> 
+    <div class="popup__container">
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form action="index.html" method="post" class="form" name="window-profile-edit">
-        <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя"> <!-- поле ввода для имени жав-ив который -->
-        <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность"> <!-- поле ввода для описания деятельности-->
+        <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя"> 
+        <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность"> 
         <button type="submit" class="button button_type_save">Сохранить</button>
       </form>
     </div>
   </div>
-
-  <div class="popup">  <!-- popup_opened Позиционируйте попап фиксированно по центру экрана и задайте окну полупрозрачный чёрный фон -->
-    <div class="popup__container">  <!-- Внутри него расположите само окно с формой popup__container, спозиционированное по центру.-->
+  <!-- всплывающее окно для добавления карточки -->
+  <div class="popup"> 
+    <div class="popup__container">  
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Добавить место</h2>
       <form action="index.html" method="post" class="form" name="window-cards-add">
@@ -104,9 +105,19 @@
       </form>
     </div>
   </div>
+  <!-- окно с картинкой -->
+  <div class="popup">
+    <div class="popup-image__container">
+      <img src="" alt="изображение на весь экран" class="popup-image">
+      <h3 class="popup-image__caption"></h3>
+      <button type="button" class="button button_type_close-window"></button>
+    </div>
+  </div>
+  <!-- шаблон для карточки -->
   <template id="card">
     <li class="cards__item">
-      <img src="" alt="" class="cards__image">
+      <button class="button button_type_delete" type="button"></button>
+      <img src="" alt="изображение в карточке" class="cards__image">
       <div class="cards__caption">
         <h2 class="cards__item-name"></h2>
         <button class="button button_type_like" type="button"></button>

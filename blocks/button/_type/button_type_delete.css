@@ -1,0 +1,49 @@
+.button_type_delete {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  border: none;
+  background-image: url(../../../images/trash.svg);
+  background-size: contain;
+  background-position: bottom;
+  width: 18px;
+  height: 19.3px;
+  background-color: transparent;
+}
+
+/* увеличить/уменьшить сердце в карточках разного рр */
+@media (max-width : 917px) {
+
+  .button_type_like {
+    width: 33px;
+    height: 28px;
+  } 
+
+} 
+
+@media (max-width : 710px) {
+
+  .button_type_like {
+    width: 18px;
+    height: 19.3px;
+  } 
+
+} 
+
+@media (max-width : 618px) {
+
+  .button_type_like {
+    width: 33px;
+    height: 28px;
+  } 
+  
+} 
+
+@media (max-width : 425px) {
+
+  .button_type_like {
+    width: 18px;
+    height: 19.3px;
+  } 
+
+} 
