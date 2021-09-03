@@ -1,6 +1,5 @@
 //объявление переменных
 let popups = document.querySelectorAll('.popup'); //выбрала все модальные окна
-console.log(popups.firstChild);
 const buttonProfileEdit = document.querySelector('.button_type_edit'), //получила кнопку редактирования
 buttonCardsAdd = document.querySelector('.button_type_add'), //получила кнопку добавления карточки
 profileEditPopup = popups[0], // определила окно редактирования профайла
@@ -48,27 +47,23 @@ function addCard(cardName, cardurl) {
     const cardItem = buttonDelete.closest('.cards__item');
     cardItem.remove();
 });
-
   //открытие изображения
   let cardImage = document.querySelector('.cards__image');
-
   cardImage.addEventListener('click', () => {
     const cardItem = buttonDelete.closest('.cards__item');
     let cardItemName = cardItem.querySelector('.cards__item-name');
     let popupImageName = document.querySelector('.popup-image__caption');
     let popupImage = document.querySelector('.popup-image');
     const imageOpenPopup = popupImage.parentElement.parentElement;
-
     const buttonClose = imageOpenPopup.querySelector('.button_type_close-window'); //находим нашу кнопку закрытия
     buttonClose.addEventListener('click', () => { //функция закрытия окна
-    closePopup(imageOpenPopup);
+      closePopup(imageOpenPopup);
     });
     popupImage.src = cardImage.src;
     popupImageName.textContent = cardItemName.textContent;
     openPopup(imageOpenPopup);
   });
 }
-
 //заполнение карточками
 function cardsLoad() {
   for(let i = 0; i < cards.name.length; i++) {
@@ -79,7 +74,7 @@ function cardsLoad() {
 // функция изменения имени при нажатии на кнопку
 function changeProfile(evt) {
   evt.preventDefault(); 
-  document.querySelector('.profile__name').textContent = nameInput.value; //profileName profileActivity глобальные не работает из-за квериселектор, не живая коллекция и данные не обновляются
+  document.querySelector('.profile__name').textContent = nameInput.value;
   document.querySelector('.profile__activity').textContent = activityInput.value;
   closePopup(profileEditPopup);
 }
@@ -108,7 +103,7 @@ buttonProfileEdit.addEventListener('click', () => {
   profileActivityForm.value = profileActivity; //вывод рода деятельности
   const buttonClose = profileEditPopup.querySelector('.button_type_close-window'); //находим нашу кнопку закрытия
   buttonClose.addEventListener('click', () => { //функция закрытия окна
-  closePopup(profileEditPopup);
+    closePopup(profileEditPopup);
   });
 });
 
@@ -117,10 +112,9 @@ buttonCardsAdd.addEventListener('click', () => {
   openPopup(cardsAddPopup); //вызов ф-ии
   const buttonClose = cardsAddPopup.querySelector('.button_type_close-window'); //находим нашу кнопку закрытия
   buttonClose.addEventListener('click', () => { //функция закрытия окна
-  closePopup(cardsAddPopup);
+    closePopup(cardsAddPopup);
   });
 });
-
 
 cardsLoad();
 formProfileEdit.addEventListener('submit', changeProfile);
