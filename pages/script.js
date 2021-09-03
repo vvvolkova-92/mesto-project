@@ -57,8 +57,13 @@ function addCard(cardName, cardurl) {
 
   cardImage.addEventListener('click', () => {
     let cardItemName = document.querySelector('.cards__item-name');
+    console.log(cardItemName);
     let popupImageName = document.querySelector('.popup-image__caption');
     let popupImage = document.querySelector('.popup-image');
+    buttonsClose[2].addEventListener('click', () => { //функция закрытия окна
+      closePopup(imageOpenPopup); 
+      console.log('dfdfdf');
+    });
     popupImage.src = cardImage.src;
     popupImageName.textContent = cardItemName.textContent;
     openPopup(imageOpenPopup);
