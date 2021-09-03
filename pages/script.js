@@ -1,13 +1,11 @@
 //объявление переменных
+let popups = document.querySelectorAll('.popup'); //выбрала все модальные окна
+console.log(popups.firstChild);
 const buttonProfileEdit = document.querySelector('.button_type_edit'), //получила кнопку редактирования
 buttonCardsAdd = document.querySelector('.button_type_add'), //получила кнопку добавления карточки
-popups = document.querySelectorAll('.popup'), //выбрала все модальные окна
-buttonsClose = document.querySelectorAll('.button_type_close-window'), //получила кнопки закрытия окон
 profileEditPopup = popups[0], // определила окно редактирования профайла
-cardsAddPopup = popups[1], // определила окно редактирования профайла
-imageOpenPopup = popups[2]; // определила окно редактирования профайла
+cardsAddPopup = popups[1]; // определила окно редактирования 
 const cardsList = document.querySelector('.cards__items');
-console.log(imageOpenPopup);
 //данные для карточек
 let cards = {
   name: ['Castle Combe', 'Clovelly', 'Dingle', 'Westport', 'Helmsley', 'Castleton'],
@@ -19,7 +17,6 @@ activityInput = formProfileEdit.querySelector('.form__item_element_profile-activ
 const formCardAdd = document.querySelectorAll('form').item(1); //получила форму редактирования профиля
 let cardnameInput = formCardAdd.querySelector('.form__item_element_cards-nameplace'), //инпут название места
 linkInput = formCardAdd.querySelector('.form__item_element_cards-link'); //ссылка на картинку
-console.log(linkInput);
 
 //функции
 
@@ -43,26 +40,28 @@ function addCard(cardName, cardurl) {
   //для лайка
   let buttonLike = document.querySelector('.button_type_like');
   buttonLike.addEventListener('click', (evt) => {
-          evt.target.classList.toggle('button_type_like-active');
-      });
+    evt.target.classList.toggle('button_type_like-active');
+  });
   // для удаления
   let buttonDelete = document.querySelector('.button_type_delete');
   buttonDelete.addEventListener('click', () => {
-  const cardItem = buttonDelete.closest('.cards__item');
-  cardItem.remove();
+    const cardItem = buttonDelete.closest('.cards__item');
+    cardItem.remove();
 });
 
   //открытие изображения
   let cardImage = document.querySelector('.cards__image');
 
   cardImage.addEventListener('click', () => {
-    let cardItemName = document.querySelector('.cards__item-name');
-    console.log(cardItemName);
+    const cardItem = buttonDelete.closest('.cards__item');
+    let cardItemName = cardItem.querySelector('.cards__item-name');
     let popupImageName = document.querySelector('.popup-image__caption');
     let popupImage = document.querySelector('.popup-image');
-    buttonsClose[2].addEventListener('click', () => { //функция закрытия окна
-      closePopup(imageOpenPopup); 
-      console.log('dfdfdf');
+    const imageOpenPopup = popupImage.parentElement.parentElement;
+
+    const buttonClose = imageOpenPopup.querySelector('.button_type_close-window'); //находим нашу кнопку закрытия
+    buttonClose.addEventListener('click', () => { //функция закрытия окна
+    closePopup(imageOpenPopup);
     });
     popupImage.src = cardImage.src;
     popupImageName.textContent = cardItemName.textContent;
@@ -107,7 +106,8 @@ buttonProfileEdit.addEventListener('click', () => {
   profileNameForm.value = profileName; //вывод имени
   let profileActivityForm = document.querySelector('.form__item_element_profile-activity');
   profileActivityForm.value = profileActivity; //вывод рода деятельности
-  buttonsClose[0].addEventListener('click', () => { //функция закрытия окна
+  const buttonClose = profileEditPopup.querySelector('.button_type_close-window'); //находим нашу кнопку закрытия
+  buttonClose.addEventListener('click', () => { //функция закрытия окна
   closePopup(profileEditPopup);
   });
 });
@@ -115,8 +115,9 @@ buttonProfileEdit.addEventListener('click', () => {
 //ообработка клика на кнопку добавления карточки
 buttonCardsAdd.addEventListener('click', () => {
   openPopup(cardsAddPopup); //вызов ф-ии
-  buttonsClose[1].addEventListener('click', () => { //функция закрытия окна
-    closePopup(profileEditPopup);
+  const buttonClose = cardsAddPopup.querySelector('.button_type_close-window'); //находим нашу кнопку закрытия
+  buttonClose.addEventListener('click', () => { //функция закрытия окна
+  closePopup(cardsAddPopup);
   });
 });
 
