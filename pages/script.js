@@ -37,12 +37,12 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
-
+//заполнение карточками
 initialCards.forEach(cardData => {
   const card = createCard(cardData);
   cardsList.append(card);
 });
-
+//ф-ия создания карточки
 function createCard(cardData) {
   const {name, link} = cardData,
   cardTemplate = document.querySelector('#card').content;
@@ -74,8 +74,6 @@ cardImage.addEventListener('click', () => {
 });
 return cardElement // возвращаем готовый элемент для вставки
 }
-
-
 // функция изменения имени при нажатии на кнопку
 function changeProfile(evt) {
   evt.preventDefault(); 
@@ -114,11 +112,11 @@ buttonCloseProfileEditPopup.addEventListener('click', () => {
 //ообработка клика на кнопку редактирования профиля
 buttonProfileEdit.addEventListener('click', () => {
   openPopup(profileEditPopup); //вызов ф-ии
-  let profileName = document.querySelector('.profile__name').textContent; //получила имя
-  let profileActivity = document.querySelector('.profile__activity').textContent; //получила деятельность
-  let profileNameForm = document.querySelector('.form__item_element_profile-name');
+  const profileName = document.querySelector('.profile__name').textContent, //получила имя
+  profileActivity = document.querySelector('.profile__activity').textContent, //получила деятельность
+  profileNameForm = document.querySelector('.form__item_element_profile-name');
   profileNameForm.value = profileName; //вывод имени
-  let profileActivityForm = document.querySelector('.form__item_element_profile-activity');
+  const profileActivityForm = document.querySelector('.form__item_element_profile-activity');
   profileActivityForm.value = profileActivity; //вывод рода деятельности
 });
 
@@ -126,9 +124,7 @@ buttonProfileEdit.addEventListener('click', () => {
 buttonCardsAdd.addEventListener('click', () => {
   openPopup(cardsAddPopup); //вызов ф-ии
 });
-
-
-
+//клики по формам
 formProfileEdit.addEventListener('submit', changeProfile);
 formCardAdd.addEventListener('submit', newCard);
 
