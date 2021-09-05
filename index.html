@@ -41,11 +41,11 @@
     <p class="footer__copyright">&copy; 2021 Vilo4ka</p>
   </footer>
   <!-- всполывающее окно для редактирования профиля -->
-  <div class="popup"> 
+  <div class="popup popup__profile-edit"> 
     <div class="popup__container">
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="index.html" method="post" class="form" name="window-profile-edit">
+      <form action="index.html" method="post" class="form form__profile-edit" name="window-profile-edit">
         <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя"> 
         <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность"> 
         <button type="submit" class="button button_type_save">Сохранить</button>
@@ -53,11 +53,11 @@
     </div>
   </div>
   <!-- всплывающее окно для добавления карточки -->
-  <div class="popup"> 
+  <div class="popup popup__card-add"> 
     <div class="popup__container">  
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Добавить место</h2>
-      <form action="index.html" method="post" class="form" name="window-cards-add">
+      <form action="index.html" method="post" class="form form__card-add" name="window-cards-add">
         <input type="text" class="form__item form__item_element_cards-nameplace" placeholder="Название"> 
         <input type="text" class="form__item form__item_element_cards-link" placeholder="Ссылка на картинку"> 
         <button type="submit" class="button button_type_save">Создать</button>
@@ -65,7 +65,7 @@
     </div>
   </div>
   <!-- окно с картинкой -->
-  <div class="popup popup_backgr-dark">
+  <div class="popup popup__image-open popup_backgr-dark">
     <div class="popup-image__container">
       <img src="images/no-picture.png" alt="изображение на весь экран" class="popup-image">
       <h3 class="popup-image__caption"></h3>
