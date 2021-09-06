@@ -25,7 +25,9 @@ formCardAdd = document.querySelector('.form__card-add'), // форма доба
 nameInput = formProfileEdit.querySelector('.form__item_element_profile-name'), //инпут имя
 activityInput = formProfileEdit.querySelector('.form__item_element_profile-activity'), //инпут деятельности
 cardnameInput = formCardAdd.querySelector('.form__item_element_cards-nameplace'), //инпут название места
-linkInput = formCardAdd.querySelector('.form__item_element_cards-link'); //ссылка на картинку
+linkInput = formCardAdd.querySelector('.form__item_element_cards-link'), //ссылка на картинку
+profileName = document.querySelector('.profile__name'),
+profileActivity = document.querySelector('.profile__activity');
 
 //функции
 
@@ -45,7 +47,7 @@ initialCards.forEach(cardData => {
 //ф-ия создания карточки
 function createCard(cardData) {
   const {name, link} = cardData,
-  cardTemplate = document.querySelector('#card').content;
+  cardTemplate = document.querySelector('#card').content,
   cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
   cardElement.querySelector('.cards__item-name').textContent = name;
   cardElement.querySelector('.cards__item-name').alt = name;
@@ -77,8 +79,8 @@ return cardElement // возвращаем готовый элемент для 
 // функция изменения имени при нажатии на кнопку
 function changeProfile(evt) {
   evt.preventDefault(); 
-  document.querySelector('.profile__name').textContent = nameInput.value;
-  document.querySelector('.profile__activity').textContent = activityInput.value;
+  profileName.textContent = nameInput.value;
+  profileActivity.textContent = activityInput.value;
   closePopup(profileEditPopup);
 }
 
@@ -90,8 +92,14 @@ function newCard(evt) {
   newCard = {name, link};
   cardsList.prepend(createCard(newCard));
   closePopup(cardsAddPopup);
-  cardnameInput.value = '';
-  linkInput.value = '';
+  formCardAdd.reset();
+}
+
+//ф-ия открытия попапа профайла
+function openProfilePopup () {
+  nameInput.value = profileName.textContent; //вывод имени
+  activityInput.value = profileActivity.textContent; //вывод рода деятельности
+  openPopup(profileEditPopup); //вызов ф-ии
 }
 
 //обработчики
@@ -110,15 +118,7 @@ buttonCloseProfileEditPopup.addEventListener('click', () => {
 
 
 //ообработка клика на кнопку редактирования профиля
-buttonProfileEdit.addEventListener('click', () => {
-  openPopup(profileEditPopup); //вызов ф-ии
-  const profileName = document.querySelector('.profile__name').textContent, //получила имя
-  profileActivity = document.querySelector('.profile__activity').textContent, //получила деятельность
-  profileNameForm = document.querySelector('.form__item_element_profile-name');
-  profileNameForm.value = profileName; //вывод имени
-  const profileActivityForm = document.querySelector('.form__item_element_profile-activity');
-  profileActivityForm.value = profileActivity; //вывод рода деятельности
-});
+buttonProfileEdit.addEventListener('click', openProfilePopup);
 
 //ообработка клика на кнопку добавления карточки
 buttonCardsAdd.addEventListener('click', () => {
