@@ -1,13 +1,19 @@
 import {openPopup, imageOpenPopup, closePopup, cardsAddPopup} from './modal.js'
 import {closeListeners, cardnameInput, linkInput, cardsList, formCardAdd} from './utils.js'
+const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
+const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
+const Dingle = new URL('../images/gallery/3-dingle.jpeg', import.meta.url);
+const Westport = new URL('../images/gallery/4-westport.jpeg', import.meta.url);
+const Helmsley = new URL('../images/gallery/5-Helmsley.jpeg', import.meta.url);
+const Castleton = new URL('../images/gallery/6-Castleton.jpeg', import.meta.url);
 //данные для карточек
 const initialCards = [
-  {name: 'Castle Combe', link: 'images/gallery/1-castle-combe.jpeg'},
-  {name: 'Clovelly', link: 'images/gallery/2-clovelly.jpeg'},
-  {name: 'Dingle', link: 'images/gallery/3-dingle.jpeg'},
-  {name: 'Westport', link: 'images/gallery/4-westport.jpeg'},
-  {name: 'Helmsley', link: 'images/gallery/5-Helmsley.jpeg'},
-  {name: 'Castleton', link: 'images/gallery/6-Castleton.jpeg'}
+  {name: 'Castle Combe', link: CastleCombe },
+  {name: 'Clovelly', link: Clovelly },
+  {name: 'Dingle', link: Dingle },
+  {name: 'Westport', link: Westport },
+  {name: 'Helmsley', link: Helmsley },
+  {name: 'Castleton', link: Castleton },
 ];
 
 //ф-ия создания карточки
