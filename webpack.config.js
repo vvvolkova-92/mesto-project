@@ -34,16 +34,15 @@ module.exports = {
       },
       {
         // применять это правило только к CSS-файлам
-        test: /\.css$/,
+        test: /\.css$/i,
         // при обработке этих файлов нужно использовать
         // MiniCssExtractPlugin.loader и css-loader
         use: [MiniCssExtractPlugin.loader, {
-        loader: 'css-loader',
-        options: { importLoaders: 1 }
+          loader: 'css-loader',
+          options: { importLoaders: 1 }
         },
-            // Добавьте postcss-loader
-        'postcss-loader'
-      ]
+        'postcss-loader',
+        ],
       },
       ]
   },
@@ -55,3 +54,5 @@ module.exports = {
     new MiniCssExtractPlugin(),
   ]
 }
+
+

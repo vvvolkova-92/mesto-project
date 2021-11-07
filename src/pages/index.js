@@ -1,3 +1,4 @@
+import css from './index.css'
 import './index.css'
 import {profileEditPopup, cardsAddPopup, imageOpenPopup, openProfilePopup, closePopup, openPopup} from '../components/modal.js'
 import {initialCards, createCard} from '../components/card.js'
