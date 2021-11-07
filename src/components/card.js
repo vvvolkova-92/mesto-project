@@ -55,5 +55,4 @@ function newCard(evt) {
   formCardAdd.reset();
 }
 
-
 export {initialCards, createCard, newCard}
