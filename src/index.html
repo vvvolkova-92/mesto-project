@@ -8,7 +8,6 @@
   <meta name="description" content="Сайт о путешествиях по России">
   <meta name="keywords" content="travel, путешествия, внутренний туризм">
   <meta name="author" content="Vilo4ka">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Места</title>
   <!-- заполнить енд -->
 </head>
@@ -20,7 +19,7 @@
   <main class="content content_style_main">
     <section class="profile">
       <div class="profile__info-full">
-        <img src="images/avatar.jpg" alt="Фото в профиле" class="profile__photo">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Фото в профиле" class="profile__photo">
         <div class="profile__info">
           <div class="profile__info-first-line">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -79,7 +78,7 @@
   <!-- окно с картинкой -->
   <div class="popup popup__image-open popup_backgr-dark">
     <div class="popup-image__container">
-      <img src="images/no-picture.png" alt="изображение на весь экран" class="popup-image">
+      <img src="<%=require('./images/no-picture.png')%>" alt="изображение на весь экран" class="popup-image">
       <h3 class="popup-image__caption"></h3>
       <button type="button" class="button button_type_close-window"></button>
     </div>
@@ -95,6 +94,6 @@
       </div>
     </li>
   </template>
-  <script type="module" src="pages/script.js"></script>
+  <!-- <script type="module" src="pages/index.js"></script> -->
 </body>
 </html>
