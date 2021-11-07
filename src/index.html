@@ -8,7 +8,6 @@
   <meta name="description" content="Сайт о путешествиях по России">
   <meta name="keywords" content="travel, путешествия, внутренний туризм">
   <meta name="author" content="Vilo4ka">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Места</title>
   <!-- заполнить енд -->
 </head>
@@ -20,7 +19,7 @@
   <main class="content content_style_main">
     <section class="profile">
       <div class="profile__info-full">
-        <img src="images/avatar.jpg" alt="Фото в профиле" class="profile__photo">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Фото в профиле" class="profile__photo">
         <div class="profile__info">
           <div class="profile__info-first-line">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -45,9 +44,15 @@
     <div class="popup__container">
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="index.html" method="post" class="form form__profile-edit" name="window-profile-edit">
-        <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя" minlength="2" maxlength="40" required> 
-        <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность" minlength="2" maxlength="200" required>  
+      <form action="index.html" method="post" class="form form__profile-edit" name="window-profile-edit" novalidate>
+        <div class="form__field">
+          <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя" minlength="2" maxlength="40" required name="profile-name"> 
+          <span class="form__item-error" id="profile-name-error"></span>
+        </div>
+        <div class="form__field">
+          <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность" minlength="2" maxlength="200" required name="profile-activity">  
+          <span class="form__item-error" id="profile-activity-error"></span>
+        </div>
         <button type="submit" class="button button_type_save">Сохранить</button>
       </form>
     </div>
@@ -57,9 +62,15 @@
     <div class="popup__container">  
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Добавить место</h2>
-      <form action="index.html" method="post" class="form form__card-add" name="window-cards-add">
-        <input type="text" class="form__item form__item_element_cards-nameplace" placeholder="Название"> 
-        <input type="text" class="form__item form__item_element_cards-link" placeholder="Ссылка на картинку"> 
+      <form action="index.html" method="post" class="form form__card-add" name="window-cards-add" novalidate>
+        <div class="form__field">
+          <input type="text" class="form__item form__item_element_cards-nameplace" placeholder="Название" minlength="2" maxlength="30" required name="cards-nameplace"> 
+          <span class="form__item-error" id="cards-nameplace-error"></span>
+        </div>
+        <div class="form__field">
+          <input type="url" class="form__item form__item_element_cards-link" placeholder="Ссылка на картинку" required name="cards-link"> 
+          <span class="form__item-error" id="cards-link-error"></span>
+        </div>
         <button type="submit" class="button button_type_save">Создать</button>
       </form>
     </div>
@@ -67,7 +78,7 @@
   <!-- окно с картинкой -->
   <div class="popup popup__image-open popup_backgr-dark">
     <div class="popup-image__container">
-      <img src="images/no-picture.png" alt="изображение на весь экран" class="popup-image">
+      <img src="<%=require('./images/no-picture.png')%>" alt="изображение на весь экран" class="popup-image">
       <h3 class="popup-image__caption"></h3>
       <button type="button" class="button button_type_close-window"></button>
     </div>
@@ -83,6 +94,6 @@
       </div>
     </li>
   </template>
-  <script src="pages/script.js"></script>
+  <!-- <script type="module" src="pages/index.js"></script> -->
 </body>
 </html>
