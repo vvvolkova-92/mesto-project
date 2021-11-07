@@ -45,9 +45,15 @@
     <div class="popup__container">
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="index.html" method="post" class="form form__profile-edit" name="window-profile-edit">
-        <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя" minlength="2" maxlength="40" required> 
-        <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность" minlength="2" maxlength="200" required>  
+      <form action="index.html" method="post" class="form form__profile-edit" name="window-profile-edit" novalidate>
+        <div class="form__field">
+          <input type="text" class="form__item form__item_element_profile-name" placeholder="Имя" minlength="2" maxlength="40" required name="profile-name"> 
+          <span class="form__item-error" id="profile-name-error"></span>
+        </div>
+        <div class="form__field">
+          <input type="text" class="form__item form__item_element_profile-activity" placeholder="Деятельность" minlength="2" maxlength="200" required name="profile-activity">  
+          <span class="form__item-error" id="profile-activity-error"></span>
+        </div>
         <button type="submit" class="button button_type_save">Сохранить</button>
       </form>
     </div>
@@ -57,9 +63,15 @@
     <div class="popup__container">  
       <button type="button" class="button button_type_close-window"></button>
       <h2 class="popup__title">Добавить место</h2>
-      <form action="index.html" method="post" class="form form__card-add" name="window-cards-add">
-        <input type="text" class="form__item form__item_element_cards-nameplace" placeholder="Название"> 
-        <input type="text" class="form__item form__item_element_cards-link" placeholder="Ссылка на картинку"> 
+      <form action="index.html" method="post" class="form form__card-add" name="window-cards-add" novalidate>
+        <div class="form__field">
+          <input type="text" class="form__item form__item_element_cards-nameplace" placeholder="Название" minlength="2" maxlength="30" required name="cards-nameplace"> 
+          <span class="form__item-error" id="cards-nameplace-error"></span>
+        </div>
+        <div class="form__field">
+          <input type="url" class="form__item form__item_element_cards-link" placeholder="Ссылка на картинку" required name="cards-link"> 
+          <span class="form__item-error" id="cards-link-error"></span>
+        </div>
         <button type="submit" class="button button_type_save">Создать</button>
       </form>
     </div>
@@ -83,6 +95,6 @@
       </div>
     </li>
   </template>
-  <script src="pages/script.js"></script>
+  <script type="module" src="pages/script.js"></script>
 </body>
 </html>

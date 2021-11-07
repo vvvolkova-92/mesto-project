@@ -1,0 +1,13 @@
+.form__field {
+  box-sizing: border-box;
+  margin: 13px 0 0 0;
+  min-height: 50px;
+}
+
+.form__field:first-of-type {
+  margin: 0;
+}
+
+.form__field:last-of-type  {
+  margin-bottom: 31px;
+}

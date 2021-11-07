@@ -41,7 +41,10 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 /* для формы */
 @import url(../blocks/form/form.css);
+@import url(../blocks/form/__field/form__field.css);
 @import url(../blocks/form/__item/form__item.css);
+@import url(../blocks/form/__item/_error/form__item_error.css);
+@import url(../blocks/form/__item-error/form__item-error.css);
 @import url(../blocks/form/__item/_element/form__item_element_profile-activity.css);
 /* всплывающее окно */
 @import url(../blocks/popup/popup.css);

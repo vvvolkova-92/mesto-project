@@ -14,6 +14,14 @@
   transition: opacity .5s ease-in-out;
 }
 
+.button_type_save:disabled {
+  background-color: #fff;
+  color: #000;
+  opacity: 0.2;
+  cursor: default;
+  border: 1px solid #000;
+}
+
 @media (max-width : 468px) {
   
   .button_type_save {
