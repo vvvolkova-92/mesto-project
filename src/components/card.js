@@ -1,5 +1,5 @@
-import {openPopup, imageOpenPopup, closePopup, cardsAddPopup} from './modal.js'
-import {closeListeners, cardnameInput, linkInput, cardsList, formCardAdd} from './utils.js'
+import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage} from './modal.js'
+import {cardnameInput, linkInput, cardsList, formCardAdd} from './utils.js'
 const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
 const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
 const Dingle = new URL('../images/gallery/3-dingle.jpeg', import.meta.url);
@@ -22,8 +22,9 @@ function createCard(cardData) {
   cardTemplate = document.querySelector('#card').content,
   cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
   cardElement.querySelector('.cards__item-name').textContent = name;
-  cardElement.querySelector('.cards__item-name').alt = name;
-  cardElement.querySelector('.cards__image').src = link;
+  const cardImage = cardElement.querySelector('.cards__image');
+  cardImage.src = link;
+  cardImage.alt = name;
   //like
   const buttonLike = cardElement.querySelector('.button_type_like');
   buttonLike.addEventListener('click', (evt) => {
@@ -36,22 +37,19 @@ function createCard(cardData) {
     cardItem.remove();
 });
 //открытие изображения
-const cardImage = cardElement.querySelector('.cards__image');
 cardImage.addEventListener('click', () => {
   const cardItem = buttonDelete.closest('.cards__item'),
-  cardItemName = cardItem.querySelector('.cards__item-name'),
-  popupImageName = document.querySelector('.popup-image__caption'),
-  popupImage = document.querySelector('.popup-image');
-  popupImage.src = cardImage.src;
-  popupImageName.textContent = cardItemName.textContent;
+  popupImageName = document.querySelector('.popup-image__caption');
+  popupImage.src = link;
+  popupImageName.textContent = name;
+  popupImage.alt = name;
   openPopup(imageOpenPopup);
-  closeListeners(imageOpenPopup);
 });
 return cardElement // возвращаем готовый элемент для вставки
 }
 
 // функция добавления карточки новой 
-function newCard(evt) {
+function addNewCard(evt) {
   evt.preventDefault(); 
   const name = cardnameInput.value,
   link = linkInput.value,
@@ -59,6 +57,8 @@ function newCard(evt) {
   cardsList.prepend(createCard(newCard));
   closePopup(cardsAddPopup);
   formCardAdd.reset();
+  const submitButton = formCardAdd.querySelector('.button_type_save');
+  submitButton.disabled = true;
 }
 
-export {initialCards, createCard, newCard}
+export {initialCards, createCard, addNewCard}
