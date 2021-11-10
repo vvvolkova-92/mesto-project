@@ -1,9 +1,3 @@
-const config = {
-  inputSelector: '.form__item',
-  buttonSelector: '.button_type_save',
-  errorClass: 'form__item_error',
-};
-
 //функция проверки валидности формы
 const checkFormValid = inputList => {
   let valid;
@@ -11,14 +5,14 @@ const checkFormValid = inputList => {
 };
 
 //2.1.2 функция спрятать ошибку
-const hideError = inputElement => {
+const hideError = (inputElement, config) => {
   const errorElement = document.querySelector(`#${inputElement.name}-error`);
   errorElement.textContent='';
   inputElement.classList.remove(config.errorClass);
 };
 
 //2.1.3 функция показать ошибку
-const showError = inputElement => {
+const showError = (inputElement, config) => {
   const errorElement = document.querySelector(`#${inputElement.name}-error`);
   errorElement.textContent= inputElement.validationMessage;
   inputElement.classList.add(config.errorClass);
@@ -26,7 +20,7 @@ const showError = inputElement => {
 
 //2.1.4 функция состояния кнопки
 //передаем ей кнопку и список полей ввода
-const buttonState = (inputList, buttonElement) => {
+const setButtonState = (inputList, buttonElement) => {
   //если форма валидна - кнопка активна
   //иначе - неактивна
   checkFormValid(inputList) ? buttonElement.disabled = false : buttonElement.disabled = true;
@@ -34,14 +28,14 @@ const buttonState = (inputList, buttonElement) => {
 };
 
 //2.1 функция проверки валидности полей ввода
-const checkinputValid = inputElement => {
+const checkinputValid = (inputElement, config) => {
   //проверить поля ввода на корректность ввода
   //в случае чего выводить ошибку
-  inputElement.validity.valid ? hideError(inputElement) : showError(inputElement);
+  inputElement.validity.valid ? hideError(inputElement, config) : showError(inputElement, config);
 };
 
 //2. функция обработчика формы
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   //убрала страндартное поведение
   //на событие сабмит
@@ -50,25 +44,24 @@ const setEventListeners = (formElement) => {
   });
   //нашла кнопку формы
   const subminButton = formElement.querySelector(config.buttonSelector);
-  // const subminButtons = Array.from(document.querySelectorAll(config.buttonSelector));
   //добавила слушатели для каждого инпута
   inputList.forEach(inputElement => {
     //вешаем проверку на каждый инпут
     inputElement.addEventListener('input', () => {
       //поле ввода валидно/нет? 
-      checkinputValid(inputElement);
+      checkinputValid(inputElement, config);
       //переключать кнопку в зависимости от ответа выше
-      buttonState(inputList, subminButton);
+      setButtonState(inputList, subminButton);
     });
   });
-  buttonState(inputList, subminButton);
+  setButtonState(inputList, subminButton);
 };
 
 //1. функция валидации
-export const EnableValidation = () => {
+export const enableValidation = (config) => {
   const formList = Array.from(document.forms);
   //установила слушатели для формы
   formList.forEach(formElement => {
-    setEventListeners(formElement);
+    setEventListeners(formElement, config);
   })
 }
