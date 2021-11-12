@@ -1,5 +1,5 @@
 import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage} from './modal.js'
-import {cardnameInput, linkInput, cardsList, formCardAdd} from './utils.js'
+import {cardnameInput, linkInput, cardsList, formCardAdd, profileName} from './utils.js'
 import {uploadNewCard} from '../components/api.js'
 const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
 const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
@@ -10,7 +10,7 @@ const Castleton = new URL('../images/gallery/6-Castleton.jpeg', import.meta.url)
 
 //ф-ия создания карточки
 function createCard(cardData) {
-  const {name, link} = cardData,
+  const {name, link, likes, owner} = cardData,
   cardTemplate = document.querySelector('#card').content,
   cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
   cardElement.querySelector('.cards__item-name').textContent = name;
@@ -22,8 +22,13 @@ function createCard(cardData) {
   buttonLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('button_type_like-active');
   });
-//удаление
+  //7. Отображение количества лайков карточки
+  const likeCounter = cardElement.querySelector('.cards__like-counter');
+  likeCounter.textContent = likes.length;
+  //проверить пренадлежит ли мне карточка
   const buttonDelete = cardElement.querySelector('.button_type_delete');
+  if(owner.name === profileName.textContent) buttonDelete.style.display = 'block';
+//удаление
   buttonDelete.addEventListener('click', () => {
     const cardItem = buttonDelete.closest('.cards__item');
     cardItem.remove();

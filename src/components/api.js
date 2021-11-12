@@ -90,9 +90,6 @@ export function uploadNewCard () {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(newCard => {
-      console.log(newCard + ' добавлена');
-    })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 
