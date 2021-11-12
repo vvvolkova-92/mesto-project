@@ -1,4 +1,4 @@
-import {profileName, profileActivity, profileAvatar, cardsList, nameInput, activityInput, formProfileEdit, cardnameInput, linkInput} from '../components/utils.js'
+import {profileName, profileActivity, profileAvatar, cardsList, formProfileEdit, cardnameInput, linkInput, nameInput, activityInput} from '../components/utils.js'
 import {createCard} from '../components/card.js'
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
@@ -50,7 +50,7 @@ export function getInitialCards () {
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 // 5. Редактирование профиля
-export function getEditUser () {
+export function getEditUser (name, activity) {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -58,8 +58,8 @@ export function getEditUser () {
       'Content-Type': config.headers.ContentType,  
     },
     body: JSON.stringify({
-      name: nameInput.value,
-      about: activityInput.value,
+      name: name,
+      about: activity,
     })
   })
     .then(res => {
@@ -67,8 +67,12 @@ export function getEditUser () {
       return Promise.reject(res.status)
     })
     .then(newData => {
+      //подумать как без экспорта этих переменных
+      //передавать значение
       profileName.textContent = newData.name;
       profileActivity.textContent = newData.about;
+      name = newData.name;
+      activity = newData.about;
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
@@ -109,5 +113,31 @@ export function getDeleteCard (cardId) {
     .then(res => console.log(res))
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
+
+// 9. Постановка  лайка
+export function likesCard (cardId, cardData) {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: {
+      authorization: config.headers.authorization,
+      'Content-Type': config.headers.ContentType,  
+    },
+    body: JSON.stringify({
+      likes: cardData,
+    })
+  })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(res.status)
+    })
+    .then(likes => {
+      return likes
+    })
+    .catch(err => console.log(`Ошибочка вышла: ${err}`))
+}
+
+
+
+
 
 

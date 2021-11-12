@@ -2,7 +2,7 @@ import css from './index.css'
 import './index.css'
 import {cardsAddPopup, openProfilePopup, closePopup, openPopup, allPopups} from '../components/modal.js'
 import {initialCards, createCard} from '../components/card.js'
-import {cardsList} from '../components/utils.js'
+import {cardsList, nameInput, activityInput} from '../components/utils.js'
 import {enableValidation} from '../components/validate.js'
 import {getUserData, getInitialCards} from '../components/api.js'
 //кнопки
@@ -15,8 +15,7 @@ const config = {
 };
 
 // //передать данные профайла в попап
-// nameInput.value = profileName.textContent; //вывод имени
-// activityInput.value = profileActivity.textContent; //вывод рода деятельности
+
 
 //обработчики
 
@@ -33,5 +32,5 @@ buttonCardsAdd.addEventListener('click', () => {
 });
 
 enableValidation(config);
-getUserData();
+getUserData(nameInput.value, activityInput.value);
 getInitialCards();
