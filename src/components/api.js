@@ -93,4 +93,21 @@ export function uploadNewCard () {
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 
+// 8. Удаление карточки
+export function getDeleteCard (cardId) {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: config.headers.authorization,
+      'Content-Type': config.headers.ContentType,  
+    },
+  })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(res.status)
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(`Ошибочка вышла: ${err}`))
+}
+
 

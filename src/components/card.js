@@ -1,6 +1,6 @@
 import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage} from './modal.js'
 import {cardnameInput, linkInput, cardsList, formCardAdd, profileName} from './utils.js'
-import {uploadNewCard} from '../components/api.js'
+import {uploadNewCard, getDeleteCard} from '../components/api.js'
 const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
 const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
 const Dingle = new URL('../images/gallery/3-dingle.jpeg', import.meta.url);
@@ -10,7 +10,7 @@ const Castleton = new URL('../images/gallery/6-Castleton.jpeg', import.meta.url)
 
 //ф-ия создания карточки
 function createCard(cardData) {
-  const {name, link, likes, owner} = cardData,
+  const {name, link, likes, owner, _id} = cardData,
   cardTemplate = document.querySelector('#card').content,
   cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
   cardElement.querySelector('.cards__item-name').textContent = name;
@@ -30,8 +30,10 @@ function createCard(cardData) {
   if(owner.name === profileName.textContent) buttonDelete.style.display = 'block';
 //удаление
   buttonDelete.addEventListener('click', () => {
+    console.dir(_id);
     const cardItem = buttonDelete.closest('.cards__item');
     cardItem.remove();
+    getDeleteCard(_id);
 });
 //открытие изображения
 cardImage.addEventListener('click', () => {
