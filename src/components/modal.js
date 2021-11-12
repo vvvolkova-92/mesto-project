@@ -1,5 +1,6 @@
 import {profileName, profileActivity, nameInput, activityInput, formProfileEdit, formCardAdd, closeByEscape} from './utils.js'
 import {addNewCard} from './card.js'
+import {getEditUser} from '../components/api.js'
 //попапы
 const profileEditPopup = document.querySelector('.popup__profile-edit'), // определила окно редактирования профайла
 cardsAddPopup = document.querySelector('.popup__card-add'), // определила окно редактирования 
@@ -24,8 +25,7 @@ function openProfilePopup () {
 
 // функция изменения имени при нажатии на кнопку
 function changeProfile (evt) {
-  profileName.textContent = nameInput.value;
-  profileActivity.textContent = activityInput.value;
+  getEditUser();
   closePopup(profileEditPopup);
 }
 

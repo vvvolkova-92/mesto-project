@@ -1,20 +1,12 @@
 import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage} from './modal.js'
 import {cardnameInput, linkInput, cardsList, formCardAdd} from './utils.js'
+import {uploadNewCard} from '../components/api.js'
 const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
 const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
 const Dingle = new URL('../images/gallery/3-dingle.jpeg', import.meta.url);
 const Westport = new URL('../images/gallery/4-westport.jpeg', import.meta.url);
 const Helmsley = new URL('../images/gallery/5-Helmsley.jpeg', import.meta.url);
 const Castleton = new URL('../images/gallery/6-Castleton.jpeg', import.meta.url);
-//данные для карточек
-const initialCards = [
-  {name: 'Castle Combe', link: CastleCombe },
-  {name: 'Clovelly', link: Clovelly },
-  {name: 'Dingle', link: Dingle },
-  {name: 'Westport', link: Westport },
-  {name: 'Helmsley', link: Helmsley },
-  {name: 'Castleton', link: Castleton },
-];
 
 //ф-ия создания карточки
 function createCard(cardData) {
@@ -51,6 +43,7 @@ return cardElement // возвращаем готовый элемент для 
 // функция добавления карточки новой 
 function addNewCard(evt) {
   evt.preventDefault(); 
+  uploadNewCard();
   const name = cardnameInput.value,
   link = linkInput.value,
   newCard = {name, link};
@@ -61,4 +54,4 @@ function addNewCard(evt) {
   submitButton.disabled = true;
 }
 
-export {initialCards, createCard, addNewCard}
+export {createCard, addNewCard}

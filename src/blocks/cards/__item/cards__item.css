@@ -5,6 +5,7 @@
   background-color: #fff;
   max-width: 282px;
   min-height: 361px;
+  max-height: 361px;
 }
 
 @media (max-width : 917px) {
@@ -12,6 +13,7 @@
   .cards__item {
     border-radius: 15px;
     max-width: 430px;
+    max-height: auto;
   }  
 
 } 

@@ -7,7 +7,8 @@ activityInput = formProfileEdit.querySelector('.form__item_element_profile-activ
 cardnameInput = formCardAdd.querySelector('.form__item_element_cards-nameplace'), //инпут название места
 linkInput = formCardAdd.querySelector('.form__item_element_cards-link'), //ссылка на картинку
 profileName = document.querySelector('.profile__name'),
-profileActivity = document.querySelector('.profile__activity');
+profileActivity = document.querySelector('.profile__activity'),
+profileAvatar = document.querySelector('.profile__photo');
 const cardsList = document.querySelector('.cards__items');
 
 function closeByEscape(evt) {
@@ -18,4 +19,4 @@ function closeByEscape(evt) {
 }
 
 export {formProfileEdit, formCardAdd, profileName, cardnameInput, linkInput, profileActivity, 
-nameInput, activityInput, cardsList, closeByEscape}
+nameInput, activityInput, cardsList, closeByEscape, profileAvatar}

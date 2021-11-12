@@ -2,8 +2,9 @@ import css from './index.css'
 import './index.css'
 import {cardsAddPopup, openProfilePopup, closePopup, openPopup, allPopups} from '../components/modal.js'
 import {initialCards, createCard} from '../components/card.js'
-import {nameInput, activityInput, profileName, profileActivity, cardsList} from '../components/utils.js'
+import {cardsList} from '../components/utils.js'
 import {enableValidation} from '../components/validate.js'
+import {getUserData, getInitialCards} from '../components/api.js'
 //кнопки
 const buttonProfileEdit = document.querySelector('.button_type_edit'), //получила кнопку редактирования
 buttonCardsAdd = document.querySelector('.button_type_add'); //получила кнопку добавления карточки
@@ -13,15 +14,9 @@ const config = {
   errorClass: 'form__item_error',
 };
 
-//заполнение карточками
-initialCards.forEach(cardData => {
-  const card = createCard(cardData);
-  cardsList.append(card);
-});
-
-//передать данные профайла в попап
-nameInput.value = profileName.textContent; //вывод имени
-activityInput.value = profileActivity.textContent; //вывод рода деятельности
+// //передать данные профайла в попап
+// nameInput.value = profileName.textContent; //вывод имени
+// activityInput.value = profileActivity.textContent; //вывод рода деятельности
 
 //обработчики
 
@@ -38,3 +33,5 @@ buttonCardsAdd.addEventListener('click', () => {
 });
 
 enableValidation(config);
+getUserData();
+getInitialCards();
