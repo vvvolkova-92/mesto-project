@@ -45,10 +45,9 @@ function createCard(cardData) {
   
   //проверить пренадлежит ли мне карточка
   const buttonDelete = cardElement.querySelector('.button_type_delete');
-  if(owner.name === profileName.textContent) buttonDelete.style.display = 'block';
+  if(owner._id === '77d27e8ae20a5b7b6471b42c') buttonDelete.style.display = 'block';
 //удаление
   buttonDelete.addEventListener('click', () => {
-    console.dir(_id);
     const cardItem = buttonDelete.closest('.cards__item');
     cardItem.remove();
     getDeleteCard(_id);
@@ -72,9 +71,10 @@ function addNewCard(evt) {
   const name = cardnameInput.value,
   link = linkInput.value,
   likes = [],
-  owner = [], 
+  owner = {_id: '77d27e8ae20a5b7b6471b42c'}, 
   _id = '',
   newCard = {name, link, likes, owner, _id};
+  console.log('owner в создании карточки  '+owner._id);
   cardsList.prepend(createCard(newCard));
   formCardAdd.reset();
   const submitButton = formCardAdd.querySelector('.button_type_save');
