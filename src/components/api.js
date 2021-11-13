@@ -123,7 +123,7 @@ export function likesCard (cardId, cardData) {
       'Content-Type': config.headers.ContentType,  
     },
     body: JSON.stringify({
-      likes: cardData,
+      likes: cardData
     })
   })
     .then(res => {
@@ -131,7 +131,29 @@ export function likesCard (cardId, cardData) {
       return Promise.reject(res.status)
     })
     .then(likes => {
-      return likes
+      return likes //попробовать при вызове вытянуть то, что мне надо (наверное =)
+    })
+    .catch(err => console.log(`Ошибочка вышла: ${err}`))
+}
+
+// 9. Удаление  лайка
+export function DeletelikesCard (cardId, cardData) {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: config.headers.authorization,
+      'Content-Type': config.headers.ContentType,  
+    },
+    body: JSON.stringify({
+      likes: cardData
+    })
+  })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(res.status)
+    })
+    .then(deletelikes => {
+      return deletelikes //попробовать при вызове вытянуть то, что мне надо (наверное =)
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }

@@ -1,6 +1,6 @@
 import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage} from './modal.js'
 import {cardnameInput, linkInput, cardsList, formCardAdd, profileName} from './utils.js'
-import {uploadNewCard, getDeleteCard, likesCard} from '../components/api.js'
+import {uploadNewCard, getDeleteCard, likesCard, DeletelikesCard} from '../components/api.js'
 const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
 const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
 const Dingle = new URL('../images/gallery/3-dingle.jpeg', import.meta.url);
@@ -22,9 +22,26 @@ function createCard(cardData) {
   const likeCounter = cardElement.querySelector('.cards__like-counter');
   likeCounter.textContent = likes.length;
   const buttonLike = cardElement.querySelector('.button_type_like');
+
+  likes.forEach(like => {
+    if(like._id === '77d27e8ae20a5b7b6471b42c') buttonLike.classList.add('button_type_like-active')
+    else buttonLike.classList.remove('button_type_like-active');
+  })
   buttonLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('button_type_like-active');
-    likesCard(_id, cardData);
+    if (buttonLike.classList.contains('button_type_like-active')) {
+      likesCard(_id, cardData)
+        .then(likes => {
+        likeCounter.textContent = likes.likes.length;
+        })
+    }
+    else //cнять лайк
+    {
+      DeletelikesCard(_id, cardData)
+      .then(deletelikes => {
+      likeCounter.textContent = deletelikes.likes.length;
+      })
+    }
   });
   
   //проверить пренадлежит ли мне карточка
