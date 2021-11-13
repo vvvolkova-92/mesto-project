@@ -1,20 +1,15 @@
 import css from './index.css'
 import './index.css'
 import {cardsAddPopup, openProfilePopup, closePopup, openPopup, allPopups, profileEditPhotoPopup} from '../components/modal.js'
-import {initialCards, createCard} from '../components/card.js'
-import {cardsList, nameInput, activityInput, profileName, profileActivity, profileAvatar, formProfileEdit} from '../components/utils.js'
+import {nameInput, activityInput, profileName, profileActivity, profileAvatar, formProfileEdit, buttonProfileEdit, buttonCardsAdd, buttonProfilePhotoEdit} from '../components/utils.js'
 import {enableValidation} from '../components/validate.js'
 import {getUserData, getInitialCards} from '../components/api.js'
 //кнопки
-const buttonProfileEdit = document.querySelector('.button_type_edit'), //получила кнопку редактирования
-buttonCardsAdd = document.querySelector('.button_type_add'),
-buttonProfilePhotoEdit = document.querySelector('.button_type_edit-photo');
 const config = {
   inputSelector: '.form__item',
   buttonSelector: '.button_type_save',
   errorClass: 'form__item_error',
 };
-
 
 //обработчики
 
@@ -42,8 +37,9 @@ buttonCardsAdd.addEventListener('click', () => {
   openPopup(cardsAddPopup); //вызов ф-ии
 });
 
+
 enableValidation(config);
-getUserData(nameInput.value, activityInput.value)
+getUserData()
   .then(result => {
     profileName.textContent = result.name //вывод имени
     profileActivity.textContent = result.about //вывод рода деятельности

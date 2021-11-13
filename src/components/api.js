@@ -1,5 +1,6 @@
-import {profileName, profileActivity, profileAvatar, cardsList, formProfileEdit, cardnameInput, linkInput, nameInput, activityInput} from '../components/utils.js'
+import {cardsList, cardnameInput, linkInput} from '../components/utils.js'
 import {createCard} from '../components/card.js'
+import {loadProccess,buttonProfileEdit, buttonCardsAdd, buttonProfilePhotoEdit} from './utils'
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
   headers: {
@@ -43,7 +44,7 @@ export function getInitialCards () {
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 // 5. Редактирование профиля
-export function getEditUser (name, activity) {
+export function getEditUser (name, activity, button) {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -60,18 +61,41 @@ export function getEditUser (name, activity) {
       return Promise.reject(res.status)
     })
     .then(newData => {
-      //подумать как без экспорта этих переменных
-      //передавать значение
-      profileName.textContent = newData.name;
-      profileActivity.textContent = newData.about;
-      name = newData.name;
-      activity = newData.about;
+      return newData
+    })
+    .catch(err => console.log(`Ошибочка вышла: ${err}`))
+    // 11.1 При редактировании профиля уведомите пользователя о процессе загрузки, 
+    //поменяв текст кнопки на: «Сохранение...», 
+    //пока данные загружаются
+    .finally(() => loadProccess(false, button, 'Сохранить'))
+}
+
+// 10. Обновление аватара пользователя
+export function getEditPhotoUser (url, profileAvatar) {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: {
+      authorization: config.headers.authorization,
+      'Content-Type': config.headers.ContentType,  
+    },
+    body: JSON.stringify({
+      avatar: url,
+    })
+  })
+    .then(res => {
+      if(res.ok) return res.json()
+      return Promise.reject(res.status)
+    })
+    .then(newPhoto => {
+      profileAvatar.src = newPhoto.avatar;
+      console.dir(newPhoto)
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 
+
 // 6. Добавление новой карточки
-export function uploadNewCard () {
+export function uploadNewCard (button) {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: {
@@ -88,6 +112,8 @@ export function uploadNewCard () {
       return Promise.reject(res.status)
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
+    // 11.2 Сделайте то же самое для формы добавления новой карточки 
+    .finally(() => loadProccess(false, button, 'Создать'))
 }
 
 // 8. Удаление карточки

@@ -1,5 +1,5 @@
 import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage} from './modal.js'
-import {cardnameInput, linkInput, cardsList, formCardAdd, profileName} from './utils.js'
+import {cardnameInput, linkInput, cardsList, formCardAdd, profileName, loadProccess} from './utils.js'
 import {uploadNewCard, getDeleteCard, likesCard, DeletelikesCard} from '../components/api.js'
 const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
 const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
@@ -22,7 +22,6 @@ function createCard(cardData) {
   const likeCounter = cardElement.querySelector('.cards__like-counter');
   likeCounter.textContent = likes.length;
   const buttonLike = cardElement.querySelector('.button_type_like');
-
   likes.forEach(like => {
     if(like._id === '77d27e8ae20a5b7b6471b42c') buttonLike.classList.add('button_type_like-active')
     else buttonLike.classList.remove('button_type_like-active');
@@ -69,15 +68,19 @@ return cardElement // возвращаем готовый элемент для 
 // функция добавления карточки новой 
 function addNewCard(evt) {
   evt.preventDefault(); 
-  uploadNewCard();
+  uploadNewCard(evt.submitter);
   const name = cardnameInput.value,
   link = linkInput.value,
-  newCard = {name, link};
+  likes = [],
+  owner = [], 
+  _id = '',
+  newCard = {name, link, likes, owner, _id};
   cardsList.prepend(createCard(newCard));
-  closePopup(cardsAddPopup);
   formCardAdd.reset();
   const submitButton = formCardAdd.querySelector('.button_type_save');
   submitButton.disabled = true;
+  closePopup(cardsAddPopup);
+  loadProccess(true, evt.submitter,'');
 }
 
 export {createCard, addNewCard}
