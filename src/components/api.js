@@ -19,14 +19,7 @@ export function getUserData () {
       return Promise.reject(res.status)
     })
     .then(result => {
-      //передать данные профайла 
-      profileName.textContent = result.name //вывод имени
-      profileActivity.textContent = result.about //вывод рода деятельности
-      profileAvatar.src = result.avatar //аватар
-      nameInput.value = result.name;
-      activityInput.value = result.about;
-      const submitButton = formProfileEdit.querySelector('.button_type_save');
-      submitButton.disabled = false;
+      return result
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }

@@ -1,0 +1,11 @@
+.profile__edit-photo {
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile__edit-photo:hover {
+  background-color:rgba(0, 0, 0, 0.8);
+}

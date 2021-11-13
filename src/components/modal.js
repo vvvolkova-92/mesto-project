@@ -1,4 +1,4 @@
-import {profileName, profileActivity, nameInput, activityInput, formProfileEdit, formCardAdd, closeByEscape} from './utils.js'
+import {nameInput, activityInput, formProfileEdit, formCardAdd, closeByEscape} from './utils.js'
 import {addNewCard} from './card.js'
 import {getEditUser} from './api.js'
 //попапы
@@ -6,7 +6,8 @@ const profileEditPopup = document.querySelector('.popup__profile-edit'), // оп
 cardsAddPopup = document.querySelector('.popup__card-add'), // определила окно редактирования 
 imageOpenPopup = document.querySelector('.popup__image-open'), // картинка на весь экран
 popupImage = document.querySelector('.popup-image'), //попап изображение
-allPopups = document.querySelectorAll('.popup'); //все попапы
+allPopups = document.querySelectorAll('.popup'), //все попапы
+profileEditPhotoPopup = document.querySelector('.popup__profile-photo-edit');
 //функция открытия окна
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -33,4 +34,4 @@ function changeProfile (evt) {
 formProfileEdit.addEventListener('submit', changeProfile);
 formCardAdd.addEventListener('submit', addNewCard);
 
-export {profileEditPopup, cardsAddPopup, imageOpenPopup, openProfilePopup, popupImage, allPopups}; 
+export {profileEditPopup, cardsAddPopup, imageOpenPopup, openProfilePopup, popupImage, allPopups, profileEditPhotoPopup}; 

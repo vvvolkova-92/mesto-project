@@ -20,6 +20,9 @@
     <section class="profile">
       <div class="profile__info-full">
         <img src="<%=require('./images/avatar.jpg')%>" alt="Фото в профиле" class="profile__photo">
+        <div class="profile__edit-photo">
+          <button type="button" class="button button_type_edit-photo"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__info-first-line">
             <h1 class="profile__name"></h1>
@@ -83,6 +86,20 @@
       <button type="button" class="button button_type_close-window"></button>
     </div>
   </div>
+    <!-- всполывающее окно для редактирования фото профиля -->
+    <div class="popup popup__profile-photo-edit"> 
+      <div class="popup__container popup__container_style_photo-edit">
+        <button type="button" class="button button_type_close-window"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form action="index.html" method="post" class="form form__profile-photo-edit" name="window-profile-photo-edit" novalidate>
+          <div class="form__field">
+            <input type="url" class="form__item form__item_element_photo-link" placeholder="Ссылка на новый аватар" required name="photo-link"> 
+            <span class="form__item-error" id="photo-link-error"></span>
+          </div>
+          <button type="submit" class="button button_type_save">Сохранить</button>
+        </form>
+      </div>
+    </div>
   <!-- шаблон для карточки -->
   <template id="card">
     <li class="cards__item">
