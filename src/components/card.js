@@ -46,12 +46,7 @@ function createCard(cardData) {
   const buttonDelete = cardElement.querySelector('.button_type_delete');
   if(owner._id === userId) buttonDelete.style.display = 'block';
 //удаление
-// const deleteId = _id;
-//   buttonDelete.addEventListener('click', (evt) => {
-//     openPopup(cardDeletePopup);
-//     const cardItem = buttonDelete.closest('.cards__item');
-//     removeCard(cardItem, deleteId);
-// });
+    removeCard(cardElement, cardData);
 //открытие изображения
 cardImage.addEventListener('click', () => {
   const cardItem = buttonDelete.closest('.cards__item'),
@@ -64,16 +59,19 @@ cardImage.addEventListener('click', () => {
 return cardElement // возвращаем готовый элемент для вставки
 }
 
-// function removeCard(card, cardId) {
-//   formDeleteCard.addEventListener('submit', () => {
-//     getDeleteCard(cardId)
-//       .then( () => {
-//         card.remove();
-//       })
-//       .catch(err => console.log(`Ошибочка вышла: ${err}`))
-//     closePopup(cardDeletePopup);
-//   });
-// }
+function removeCard(cardElement, cardData) {
+  const buttonDelete = cardElement.querySelector('.button_type_delete');
+  buttonDelete.addEventListener('click', (evt) => {
+    const deleteId = cardData._id;
+    const cardElement = buttonDelete.closest('.cards__item');
+    getDeleteCard(deleteId)
+      .then( () => {
+        cardElement.remove();
+      })
+      .catch(err => console.log(`Ошибочка вышла: ${err.status}`))
+    closePopup(cardDeletePopup);
+});
+}
 
 // функция добавления карточки новой 
 function addNewCard(evt) {
