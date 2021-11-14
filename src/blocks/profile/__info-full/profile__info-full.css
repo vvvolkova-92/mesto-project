@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   flex-basis: 486px;
+  position: relative;
 }
 
 @media (max-width : 710px) {

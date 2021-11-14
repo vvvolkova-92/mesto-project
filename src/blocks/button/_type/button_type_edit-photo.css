@@ -1,0 +1,10 @@
+.button_type_edit-photo {
+  all: unset;
+  background-image: url(../../../images/logo-edit-photo.svg);
+  width: 26px;
+  height: 26px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  visibility: hidden;
+}
