@@ -1,15 +1,29 @@
 import css from './index.css'
 import './index.css'
 import {cardsAddPopup, openProfilePopup, closePopup, openPopup, allPopups, profileEditPhotoPopup} from '../components/modal.js'
-import {nameInput, activityInput, profileName, profileActivity, profileAvatar, formProfileEdit, buttonProfileEdit, buttonCardsAdd, buttonProfilePhotoEdit} from '../components/utils.js'
+import {nameInput, activityInput, profileName, profileActivity, profileAvatar, formProfileEdit, 
+  buttonProfileEdit, buttonCardsAdd, buttonProfilePhotoEdit, cardsList} from '../components/utils.js'
 import {enableValidation} from '../components/validate.js'
 import {getUserData, getInitialCards} from '../components/api.js'
+import {createCard} from '../components/card.js'
+export let userId;
 //кнопки
 const config = {
   inputSelector: '.form__item',
   buttonSelector: '.button_type_save',
   errorClass: 'form__item_error',
 };
+
+Promise.all([getUserData(), getInitialCards()])
+  .then(([userData, cardData]) => {
+    profileAvatar.src = userData.avatar;
+    profileName.textContent = userData.name;
+    activityInput.textContent = userData.about;
+    userId = userData._id;
+})
+.catch((err) => {
+  console.log(err);
+});
 
 //обработчики
 
@@ -48,5 +62,13 @@ getUserData()
     activityInput.value = result.about;
     const submitButton = formProfileEdit.querySelector('.button_type_save');
     submitButton.disabled = false;
-})
-getInitialCards();
+  })
+  .catch(err => console.log(`Ошибочка вышла: ${err} - ${err.status}`))
+getInitialCards()
+  .then(card => {
+    card.forEach(cardData => {
+      const card = createCard(cardData);
+      cardsList.append(card);
+    })
+  })
+  .catch(err => console.log(`Ошибочка вышла: ${err}`))

@@ -29,21 +29,31 @@ function closeByEscape(evt) {
 
 // функция изменения имени при нажатии на кнопку
 function changeProfile (evt) {
-  getEditUser(nameInput.value, activityInput.value, evt.submitter)
+  getEditUser(nameInput.value, activityInput.value)
     .then(newData => {
       profileName.textContent = newData.name;
       profileActivity.textContent = newData.about;
       linkPhotoInput.value = newData.avatar;
     })
+    .catch(err => console.log(`Ошибочка вышла: ${err}`))
+    // 11.1 При редактировании профиля уведомите пользователя о процессе загрузки, 
+    //поменяв текст кнопки на: «Сохранение...», 
+    //пока данные загружаются
+    .finally(() => loadProccess(false, evt.submitter, 'Сохранить'))
   closePopup(profileEditPopup);
   //кнопка до изменения
-  console.log(evt.submitter);
   loadProccess(true, evt.submitter, '');
 }
 
 // функция изменения фото при нажатии на кнопку
 function changeProfilePhoto (evt) {
-  getEditPhotoUser(linkPhotoInput.value, profileAvatar, evt.submitter)
+  getEditPhotoUser(linkPhotoInput.value)
+  .then(newPhoto => {
+    profileAvatar.src = newPhoto.avatar;
+  })
+  .catch(err => console.log(`Ошибочка вышла: ${err}`))
+  // 11.3 и обновления аватара.
+  .finally(() => loadProccess(false, evt.submitter, 'Сохранить'))
   closePopup(profileEditPhotoPopup);
   loadProccess(true, evt.submitter, '');  
 }

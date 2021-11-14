@@ -1,6 +1,5 @@
 import {cardsList, cardnameInput, linkInput} from '../components/utils.js'
-import {createCard} from '../components/card.js'
-import {loadProccess,buttonProfileEdit, buttonCardsAdd, buttonProfilePhotoEdit} from './utils'
+import {loadProccess} from './utils'
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
   headers: {
@@ -19,10 +18,6 @@ export function getUserData () {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(result => {
-      return result
-    })
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 // 4. Загрузка карточек с сервера
 export function getInitialCards () {
@@ -35,16 +30,9 @@ export function getInitialCards () {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(card => {
-      card.forEach(cardData => {
-        const card = createCard(cardData);
-        cardsList.append(card);
-      })
-    })
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 // 5. Редактирование профиля
-export function getEditUser (name, activity, button) {
+export function getEditUser (name, activity) {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -60,18 +48,10 @@ export function getEditUser (name, activity, button) {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(newData => {
-      return newData
-    })
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
-    // 11.1 При редактировании профиля уведомите пользователя о процессе загрузки, 
-    //поменяв текст кнопки на: «Сохранение...», 
-    //пока данные загружаются
-    .finally(() => loadProccess(false, button, 'Сохранить'))
 }
 
 // 10. Обновление аватара пользователя
-export function getEditPhotoUser (url, profileAvatar, button) {
+export function getEditPhotoUser (url) {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: {
@@ -86,14 +66,7 @@ export function getEditPhotoUser (url, profileAvatar, button) {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(newPhoto => {
-      profileAvatar.src = newPhoto.avatar;
-    })
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
-    // 11.3 и обновления аватара.
-    .finally(() => loadProccess(false, button, 'Сохранить'))
 }
-
 
 // 6. Добавление новой карточки
 export function uploadNewCard (button) {
@@ -112,9 +85,7 @@ export function uploadNewCard (button) {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
-    // 11.2 Сделайте то же самое для формы добавления новой карточки 
-    .finally(() => loadProccess(false, button, 'Создать'))
+
 }
 
 // 8. Удаление карточки
@@ -130,8 +101,6 @@ export function getDeleteCard (cardId) {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    // .then(res => console.log(res))
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 
 // 9. Постановка  лайка
@@ -150,32 +119,21 @@ export function likesCard (cardId, cardData) {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(newlike => {
-      return newlike //попробовать при вызове вытянуть то, что мне надо (наверное =)
-    })
-    .catch(err => console.log(`Ошибка при лайке: ${err}`))
 }
 
 // 9. Удаление  лайка
-export function DeletelikesCard (cardId, cardData) {
+export function DeletelikesCard (cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'DELETE',
     headers: {
       authorization: config.headers.authorization,
       'Content-Type': config.headers.ContentType,  
     },
-    body: JSON.stringify({
-      likes: cardData
-    })
   })
     .then(res => {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(deletelikes => {
-      return deletelikes //попробовать при вызове вытянуть то, что мне надо (наверное =)
-    })
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 
 
