@@ -17,6 +17,7 @@ function createCard(cardData) {
   const cardImage = cardElement.querySelector('.cards__image');
   cardImage.src = link;
   cardImage.alt = name;
+
   //like
   //7. Отображение количества лайков карточки
   const likeCounter = cardElement.querySelector('.cards__like-counter');
@@ -32,8 +33,8 @@ function createCard(cardData) {
     evt.target.classList.toggle('button_type_like-active');
     if (buttonLike.classList.contains('button_type_like-active')) {
       likesCard(_id, cardData)
-        .then(likes => {
-        likeCounter.textContent = likes.likes.length;
+        .then(newlike => {
+        likeCounter.textContent = newlike.likes.length;
         })
     }
     else //cнять лайк
@@ -78,13 +79,7 @@ function addNewCard(evt) {
   uploadNewCard(evt.submitter);
   const name = cardnameInput.value,
   link = linkInput.value,
-  likes = [{
-    'name': '',
-    "about": '',
-    "avatar": '',
-    "_id": '',
-    "cohort": '',
-}],
+  likes = [],
   owner = {_id: '77d27e8ae20a5b7b6471b42c'}, 
   _id = '',
   newCard = {name, link, likes, owner, _id};

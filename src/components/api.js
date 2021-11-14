@@ -150,8 +150,8 @@ export function likesCard (cardId, cardData) {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(likes => {
-      return likes //попробовать при вызове вытянуть то, что мне надо (наверное =)
+    .then(newlike => {
+      return newlike //попробовать при вызове вытянуть то, что мне надо (наверное =)
     })
     .catch(err => console.log(`Ошибка при лайке: ${err}`))
 }
