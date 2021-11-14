@@ -1,7 +1,9 @@
-import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImageName, cardDeletePopup} from './modal.js'
-import {cardnameInput, linkInput, cardsList, formCardAdd, profileName, loadProccess, formDeleteCard} from './utils.js'
+import {openPopup, closePopup} from './modal.js'
+import {loadProccess} from './utils.js'
 import {uploadNewCard, deleteCard, likesCard, deletelikesCard} from '../components/api.js'
 import {userId} from '../pages/index.js'
+import {formCardAdd, cardnameInput, linkInput, cardsList, cardsAddPopup,
+  imageOpenPopup, popupImage, popupImageName, } from './constants.js'
 
 //ф-ия создания карточки
 function createCard(cardData) {
@@ -25,7 +27,7 @@ function createCard(cardData) {
   })
 
   buttonLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('button_type_like-active');
+    evt.target.classList.toggle('button_type_like-active'); //если убрать эту строчку в .then все ломается
     if (buttonLike.classList.contains('button_type_like-active')) {
       likesCard(_id)
         .then(newlike => {
@@ -68,32 +70,26 @@ function removeCard(cardElement, cardData) {
         cardElement.remove();
       })
       .catch(err => console.log(`Ошибочка вышла: ${err.status}`))
-    closePopup(cardDeletePopup);
+
 });
 }
 
 // функция добавления карточки новой 
 function addNewCard(evt) {
   evt.preventDefault(); 
-  uploadNewCard(cardnameInput, linkInput)
+  uploadNewCard(cardnameInput.value, linkInput.value)
     .then(res => {
-      const name = res.name,
-      link = res.link,
-      likes = res.likes,
-      owner = res.owner, 
-      _id = res._id,
-      newCard = {name, link, likes, owner, _id};
-      cardsList.prepend(createCard(newCard));
+      cardsList.prepend(createCard(res));
       formCardAdd.reset();
       const submitButton = formCardAdd.querySelector('.button_type_save');
       submitButton.disabled = true;
+      closePopup(cardsAddPopup);
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
     // 11.2 Сделайте то же самое для формы добавления новой карточки 
     .finally(() => loadProccess(false, evt.submitter, 'Создать'))
   loadProccess(true, evt.submitter,'');
-  closePopup(cardsAddPopup);
+
 }
 
 export {createCard, addNewCard}
-
