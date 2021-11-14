@@ -1,5 +1,5 @@
 import {closePopup, } from './modal.js'
-import {getEditUser, getEditPhotoUser} from './api.js'
+import {editUser, getEditPhotoUser} from './api.js'
 import {profileEditPopup, profileEditPhotoPopup} from './modal.js'
 //формы  и инпуты
 //когда-то формы переделать через forms
@@ -29,7 +29,7 @@ function closeByEscape(evt) {
 
 // функция изменения имени при нажатии на кнопку
 function changeProfile (evt) {
-  getEditUser(nameInput.value, activityInput.value)
+  editUser(nameInput.value, activityInput.value)
     .then(newData => {
       profileName.textContent = newData.name;
       profileActivity.textContent = newData.about;

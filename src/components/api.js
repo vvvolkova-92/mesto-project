@@ -1,5 +1,3 @@
-import {cardsList, cardnameInput, linkInput} from '../components/utils.js'
-import {loadProccess} from './utils'
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
   headers: {
@@ -7,133 +5,93 @@ const config = {
     ContentType: 'application/json'
   }
 }
+
+function checkResponse(res) {
+  if(res.ok) return res.json()
+  return Promise.reject(res.status)
+}
+
 //3. Загрузка информации о пользователе с сервера
 export function getUserData () {
   return fetch(`${config.baseUrl}/users/me`, {
-    headers: {
-      authorization: config.headers.authorization 
-    }
+    headers: config.headers
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+    .then(checkResponse)
 }
 // 4. Загрузка карточек с сервера
 export function getInitialCards () {
   return fetch(`${config.baseUrl}/cards`, {
-    headers: {
-      authorization: config.headers.authorization 
-    }
+    headers: config.headers
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+    .then(checkResponse)
 }
 // 5. Редактирование профиля
-export function getEditUser (name, activity) {
+export function editUser (name, activity) {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
-    headers: {
-      authorization: config.headers.authorization,
-      'Content-Type': config.headers.ContentType,  
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name: name,
       about: activity,
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 // 10. Обновление аватара пользователя
 export function getEditPhotoUser (url) {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
-    headers: {
-      authorization: config.headers.authorization,
-      'Content-Type': config.headers.ContentType,  
-    },
+    headers: config.headers,
     body: JSON.stringify({
       avatar: url,
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 // 6. Добавление новой карточки
-export function uploadNewCard (button) {
+export function uploadNewCard (name, link) {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
-    headers: {
-      authorization: config.headers.authorization,
-      'Content-Type': config.headers.ContentType,  
-    },
+    headers: config.headers,
     body: JSON.stringify({
-      name: cardnameInput.value,
-      link: linkInput.value,
+      name: name,
+      link: link,
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 
 }
 
 // 8. Удаление карточки
-export function getDeleteCard (cardId) {
+export function deleteCard (cardId) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
-    headers: {
-      authorization: config.headers.authorization,
-      'Content-Type': config.headers.ContentType,  
-    },
+    headers: config.headers,
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 // 9. Постановка  лайка
 export function likesCard (cardId, cardData) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'PUT',
-    headers: {
-      authorization: config.headers.authorization,
-      'Content-Type': config.headers.ContentType,  
-    },
+    headers: config.headers,
     body: JSON.stringify({
       likes: cardData
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 // 9. Удаление  лайка
-export function DeletelikesCard (cardId) {
+export function deletelikesCard (cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'DELETE',
-    headers: {
-      authorization: config.headers.authorization,
-      'Content-Type': config.headers.ContentType,  
-    },
+    headers: config.headers,
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 

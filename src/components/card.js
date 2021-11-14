@@ -1,6 +1,6 @@
-import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage, cardDeletePopup} from './modal.js'
+import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImageName, cardDeletePopup} from './modal.js'
 import {cardnameInput, linkInput, cardsList, formCardAdd, profileName, loadProccess, formDeleteCard} from './utils.js'
-import {uploadNewCard, getDeleteCard, likesCard, DeletelikesCard} from '../components/api.js'
+import {uploadNewCard, deleteCard, likesCard, deletelikesCard} from '../components/api.js'
 import {userId} from '../pages/index.js'
 
 //ф-ия создания карточки
@@ -35,7 +35,7 @@ function createCard(cardData) {
     }
     else //cнять лайк
     {
-      DeletelikesCard(_id)
+      deletelikesCard(_id)
       .then(deletelikes => {
       likeCounter.textContent = deletelikes.likes.length;
       })
@@ -49,8 +49,7 @@ function createCard(cardData) {
     removeCard(cardElement, cardData);
 //открытие изображения
 cardImage.addEventListener('click', () => {
-  const cardItem = buttonDelete.closest('.cards__item'),
-  popupImageName = document.querySelector('.popup-image__caption');
+  const cardItem = buttonDelete.closest('.cards__item');
   popupImage.src = link;
   popupImageName.textContent = name;
   popupImage.alt = name;
@@ -64,7 +63,7 @@ function removeCard(cardElement, cardData) {
   buttonDelete.addEventListener('click', (evt) => {
     const deleteId = cardData._id;
     const cardElement = buttonDelete.closest('.cards__item');
-    getDeleteCard(deleteId)
+    deleteCard(deleteId)
       .then( () => {
         cardElement.remove();
       })
@@ -76,7 +75,7 @@ function removeCard(cardElement, cardData) {
 // функция добавления карточки новой 
 function addNewCard(evt) {
   evt.preventDefault(); 
-  uploadNewCard(evt.submitter)
+  uploadNewCard(cardnameInput, linkInput)
     .then(res => {
       const name = res.name,
       link = res.link,

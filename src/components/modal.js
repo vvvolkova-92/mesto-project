@@ -7,7 +7,8 @@ imageOpenPopup = document.querySelector('.popup__image-open'), // картинк
 popupImage = document.querySelector('.popup-image'), //попап изображение
 allPopups = document.querySelectorAll('.popup'), //все попапы
 profileEditPhotoPopup = document.querySelector('.popup__profile-photo-edit'),
-cardDeletePopup = document.querySelector('.popup__card-delete');
+cardDeletePopup = document.querySelector('.popup__card-delete'),
+popupImageName = document.querySelector('.popup-image__caption');
 
 //функция открытия окна
 export function openPopup(popup) {
@@ -31,4 +32,5 @@ formProfileEdit.addEventListener('submit', changeProfile);
 formCardAdd.addEventListener('submit', addNewCard);
 formProfilePhotoEdit.addEventListener('submit', changeProfilePhoto);
 
-export {profileEditPopup, cardsAddPopup, imageOpenPopup, openProfilePopup, popupImage, allPopups, profileEditPhotoPopup, cardDeletePopup}; 
+export {profileEditPopup, cardsAddPopup, imageOpenPopup, openProfilePopup, popupImage, allPopups, profileEditPhotoPopup, 
+  cardDeletePopup, popupImageName}; 
