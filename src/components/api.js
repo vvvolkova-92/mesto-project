@@ -71,7 +71,7 @@ export function getEditUser (name, activity, button) {
 }
 
 // 10. Обновление аватара пользователя
-export function getEditPhotoUser (url, profileAvatar) {
+export function getEditPhotoUser (url, profileAvatar, button) {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: {
@@ -88,9 +88,10 @@ export function getEditPhotoUser (url, profileAvatar) {
     })
     .then(newPhoto => {
       profileAvatar.src = newPhoto.avatar;
-      console.dir(newPhoto)
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
+    // 11.3 и обновления аватара.
+    .finally(() => loadProccess(false, button, 'Сохранить'))
 }
 
 
@@ -129,7 +130,7 @@ export function getDeleteCard (cardId) {
       if(res.ok) return res.json()
       return Promise.reject(res.status)
     })
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
 }
 
@@ -152,7 +153,7 @@ export function likesCard (cardId, cardData) {
     .then(likes => {
       return likes //попробовать при вызове вытянуть то, что мне надо (наверное =)
     })
-    .catch(err => console.log(`Ошибочка вышла: ${err}`))
+    .catch(err => console.log(`Ошибка при лайке: ${err}`))
 }
 
 // 9. Удаление  лайка

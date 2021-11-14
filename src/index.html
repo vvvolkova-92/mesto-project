@@ -100,6 +100,18 @@
         </form>
       </div>
     </div>
+        <!-- всполывающее окно для удаления фото !!!!!! -->
+        <div class="popup popup__card-delete"> 
+          <div class="popup__container popup__container_style_card-delete">
+            <button type="button" class="button button_type_close-window"></button>
+            <h2 class="popup__title">Вы уверенны?</h2>
+            <form action="index.html" method="post" class="form form__card-delete" name="window-card-delete" novalidate>
+              <!-- <div class="form__field">
+              </div> -->
+              <button type="submit" class="button button_type_save">Да</button>
+            </form>
+          </div>
+        </div>
   <!-- шаблон для карточки -->
   <template id="card">
     <li class="cards__item">

@@ -53,6 +53,7 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__container/_style/popup__container_style_photo-edit.css);
+@import url(../blocks/popup/__container/_style/popup__container_style_card-delete.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/_backgr-dark/popup_backgr-dark.css);

@@ -1,5 +1,5 @@
-import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage} from './modal.js'
-import {cardnameInput, linkInput, cardsList, formCardAdd, profileName, loadProccess} from './utils.js'
+import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage, cardDeletePopup} from './modal.js'
+import {cardnameInput, linkInput, cardsList, formCardAdd, profileName, loadProccess, formDeleteCard} from './utils.js'
 import {uploadNewCard, getDeleteCard, likesCard, DeletelikesCard} from '../components/api.js'
 const CastleCombe = new URL('../images/gallery/1-castle-combe.jpeg', import.meta.url);
 const Clovelly = new URL('../images/gallery/2-clovelly.jpeg', import.meta.url);
@@ -22,10 +22,12 @@ function createCard(cardData) {
   const likeCounter = cardElement.querySelector('.cards__like-counter');
   likeCounter.textContent = likes.length;
   const buttonLike = cardElement.querySelector('.button_type_like');
+
   likes.forEach(like => {
     if(like._id === '77d27e8ae20a5b7b6471b42c') buttonLike.classList.add('button_type_like-active')
     else buttonLike.classList.remove('button_type_like-active');
   })
+
   buttonLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('button_type_like-active');
     if (buttonLike.classList.contains('button_type_like-active')) {
@@ -47,10 +49,16 @@ function createCard(cardData) {
   const buttonDelete = cardElement.querySelector('.button_type_delete');
   if(owner._id === '77d27e8ae20a5b7b6471b42c') buttonDelete.style.display = 'block';
 //удаление
-  buttonDelete.addEventListener('click', () => {
+
+  buttonDelete.addEventListener('click', (evt) => {
+    openPopup(cardDeletePopup);
     const cardItem = buttonDelete.closest('.cards__item');
-    cardItem.remove();
-    getDeleteCard(_id);
+    formDeleteCard.addEventListener('submit', () => {
+      cardItem.remove();
+      getDeleteCard(_id);
+      closePopup(cardDeletePopup);
+    });
+
 });
 //открытие изображения
 cardImage.addEventListener('click', () => {
@@ -70,11 +78,16 @@ function addNewCard(evt) {
   uploadNewCard(evt.submitter);
   const name = cardnameInput.value,
   link = linkInput.value,
-  likes = [],
+  likes = [{
+    'name': '',
+    "about": '',
+    "avatar": '',
+    "_id": '',
+    "cohort": '',
+}],
   owner = {_id: '77d27e8ae20a5b7b6471b42c'}, 
   _id = '',
   newCard = {name, link, likes, owner, _id};
-  console.log('owner в создании карточки  '+owner._id);
   cardsList.prepend(createCard(newCard));
   formCardAdd.reset();
   const submitButton = formCardAdd.querySelector('.button_type_save');
@@ -84,3 +97,4 @@ function addNewCard(evt) {
 }
 
 export {createCard, addNewCard}
+
