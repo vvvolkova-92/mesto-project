@@ -18,7 +18,7 @@ Promise.all([getUserData(), getInitialCards()])
   .then(([userData, cardData]) => {
     profileAvatar.src = userData.avatar;
     profileName.textContent = userData.name;
-    activityInput.textContent = userData.about;
+    profileActivity.textContent = userData.about;
     userId = userData._id;
     startInitialCard(cardData);
 })
@@ -69,8 +69,6 @@ enableValidation(config);
 //     profileName.textContent = result.name //вывод имени
 //     profileActivity.textContent = result.about //вывод рода деятельности
 //     profileAvatar.src = result.avatar //аватар
-//     nameInput.value = result.name;
-//     activityInput.value = result.about;
 //     const submitButton = formProfileEdit.querySelector('.button_type_save');
 //     submitButton.disabled = false;
 //   })
