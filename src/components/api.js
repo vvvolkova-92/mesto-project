@@ -1,12 +1,16 @@
-import {cardsList, cardnameInput, linkInput} from '../components/utils.js'
-import {loadProccess} from './utils'
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
+  //если использовать headers: config.headers все ломается и не работает
   headers: {
     authorization: '34ec8cb0-1bba-4545-a356-d16d36203124',
     ContentType: 'application/json'
   }
 }
+function checkResponse(res) {
+  if(res.ok) return res.json()
+  return Promise.reject(res.status)
+}
+
 //3. Загрузка информации о пользователе с сервера
 export function getUserData () {
   return fetch(`${config.baseUrl}/users/me`, {
@@ -14,10 +18,7 @@ export function getUserData () {
       authorization: config.headers.authorization 
     }
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+    .then(checkResponse)
 }
 // 4. Загрузка карточек с сервера
 export function getInitialCards () {
@@ -26,13 +27,10 @@ export function getInitialCards () {
       authorization: config.headers.authorization 
     }
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 // 5. Редактирование профиля
-export function getEditUser (name, activity) {
+export function editUser (name, activity) {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -44,10 +42,7 @@ export function getEditUser (name, activity) {
       about: activity,
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+    .then(checkResponse)
 }
 
 // 10. Обновление аватара пользователя
@@ -62,14 +57,11 @@ export function getEditPhotoUser (url) {
       avatar: url,
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 // 6. Добавление новой карточки
-export function uploadNewCard (button) {
+export function uploadNewCard (cardName, cardLink) {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: {
@@ -77,19 +69,16 @@ export function uploadNewCard (button) {
       'Content-Type': config.headers.ContentType,  
     },
     body: JSON.stringify({
-      name: cardnameInput.value,
-      link: linkInput.value,
+      name: cardName,
+      link: cardLink,
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 
 }
 
 // 8. Удаление карточки
-export function getDeleteCard (cardId) {
+export function deleteCard (cardId) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: {
@@ -97,10 +86,7 @@ export function getDeleteCard (cardId) {
       'Content-Type': config.headers.ContentType,  
     },
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 // 9. Постановка  лайка
@@ -115,14 +101,11 @@ export function likesCard (cardId, cardData) {
       likes: cardData
     })
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
 
 // 9. Удаление  лайка
-export function DeletelikesCard (cardId) {
+export function deletelikesCard (cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'DELETE',
     headers: {
@@ -130,14 +113,5 @@ export function DeletelikesCard (cardId) {
       'Content-Type': config.headers.ContentType,  
     },
   })
-    .then(res => {
-      if(res.ok) return res.json()
-      return Promise.reject(res.status)
-    })
+  .then(checkResponse)
 }
-
-
-
-
-
-

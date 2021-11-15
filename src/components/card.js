@@ -1,7 +1,9 @@
-import {openPopup, imageOpenPopup, closePopup, cardsAddPopup, popupImage, cardDeletePopup} from './modal.js'
-import {cardnameInput, linkInput, cardsList, formCardAdd, profileName, loadProccess, formDeleteCard} from './utils.js'
-import {uploadNewCard, getDeleteCard, likesCard, DeletelikesCard} from '../components/api.js'
+import {openPopup, closePopup} from './modal.js'
+import {loadProccess} from './utils.js'
+import {uploadNewCard, deleteCard, likesCard, deletelikesCard} from '../components/api.js'
 import {userId} from '../pages/index.js'
+import {formCardAdd, cardnameInput, linkInput, cardsList, cardsAddPopup,
+  imageOpenPopup, popupImage, popupImageName, } from './constants.js'
 
 //ф-ия создания карточки
 function createCard(cardData) {
@@ -25,7 +27,7 @@ function createCard(cardData) {
   })
 
   buttonLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('button_type_like-active');
+    evt.target.classList.toggle('button_type_like-active'); //если убрать эту строчку в .then все ломается
     if (buttonLike.classList.contains('button_type_like-active')) {
       likesCard(_id)
         .then(newlike => {
@@ -35,7 +37,7 @@ function createCard(cardData) {
     }
     else //cнять лайк
     {
-      DeletelikesCard(_id)
+      deletelikesCard(_id)
       .then(deletelikes => {
       likeCounter.textContent = deletelikes.likes.length;
       })
@@ -49,8 +51,7 @@ function createCard(cardData) {
     removeCard(cardElement, cardData);
 //открытие изображения
 cardImage.addEventListener('click', () => {
-  const cardItem = buttonDelete.closest('.cards__item'),
-  popupImageName = document.querySelector('.popup-image__caption');
+  const cardItem = buttonDelete.closest('.cards__item');
   popupImage.src = link;
   popupImageName.textContent = name;
   popupImage.alt = name;
@@ -64,37 +65,31 @@ function removeCard(cardElement, cardData) {
   buttonDelete.addEventListener('click', (evt) => {
     const deleteId = cardData._id;
     const cardElement = buttonDelete.closest('.cards__item');
-    getDeleteCard(deleteId)
+    deleteCard(deleteId)
       .then( () => {
         cardElement.remove();
       })
       .catch(err => console.log(`Ошибочка вышла: ${err.status}`))
-    closePopup(cardDeletePopup);
+
 });
 }
 
 // функция добавления карточки новой 
 function addNewCard(evt) {
   evt.preventDefault(); 
-  uploadNewCard(evt.submitter)
+  uploadNewCard(cardnameInput.value, linkInput.value)
     .then(res => {
-      const name = res.name,
-      link = res.link,
-      likes = res.likes,
-      owner = res.owner, 
-      _id = res._id,
-      newCard = {name, link, likes, owner, _id};
-      cardsList.prepend(createCard(newCard));
+      cardsList.prepend(createCard(res));
       formCardAdd.reset();
       const submitButton = formCardAdd.querySelector('.button_type_save');
       submitButton.disabled = true;
+      closePopup(cardsAddPopup);
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))
     // 11.2 Сделайте то же самое для формы добавления новой карточки 
     .finally(() => loadProccess(false, evt.submitter, 'Создать'))
   loadProccess(true, evt.submitter,'');
-  closePopup(cardsAddPopup);
+
 }
 
 export {createCard, addNewCard}
-
