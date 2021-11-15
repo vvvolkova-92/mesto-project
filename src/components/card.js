@@ -3,7 +3,7 @@ import {loadProccess} from './utils.js'
 import {uploadNewCard, deleteCard, likesCard, deletelikesCard} from '../components/api.js'
 import {userId} from '../pages/index.js'
 import {formCardAdd, cardnameInput, linkInput, cardsList, cardsAddPopup,
-  imageOpenPopup, popupImage, popupImageName, } from './constants.js'
+  imageOpenPopup, popupImage, popupImageName, addSubmitButton} from './constants.js'
 
 //ф-ия создания карточки
 function createCard(cardData) {
@@ -27,11 +27,12 @@ function createCard(cardData) {
   })
 
   buttonLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('button_type_like-active'); //если убрать эту строчку в .then все 
-    if (buttonLike.classList.contains('button_type_like-active')) {
+
+    if (!buttonLike.classList.contains('button_type_like-active')) {
       likesCard(_id)
         .then(newlike => {
         likeCounter.textContent = newlike.likes.length;
+        evt.target.classList.add('button_type_like-active');
         })
         .catch(err => console.log(`Ошибка при лайке: ${err}`))
     }
@@ -40,6 +41,7 @@ function createCard(cardData) {
       deletelikesCard(_id)
       .then(deletelikes => {
       likeCounter.textContent = deletelikes.likes.length;
+      evt.target.classList.remove('button_type_like-active');
       })
       .catch(err => console.log(`Ошибка при лайке: ${err}`))
     }
@@ -51,7 +53,6 @@ function createCard(cardData) {
     removeCard(cardElement, cardData);
 //открытие изображения
 cardImage.addEventListener('click', () => {
-  const cardItem = buttonDelete.closest('.cards__item');
   popupImage.src = link;
   popupImageName.textContent = name;
   popupImage.alt = name;
@@ -81,8 +82,7 @@ function addNewCard(evt) {
     .then(res => {
       cardsList.prepend(createCard(res));
       formCardAdd.reset();
-      const submitButton = formCardAdd.querySelector('.button_type_save');
-      submitButton.disabled = true;
+      addSubmitButton.disabled = true;
       closePopup(cardsAddPopup);
     })
     .catch(err => console.log(`Ошибочка вышла: ${err}`))

@@ -22,8 +22,15 @@ allPopups = document.querySelectorAll('.popup'), //все попапы
 profileEditPhotoPopup = document.querySelector('.popup__profile-photo-edit'),
 cardDeletePopup = document.querySelector('.popup__card-delete'),
 popupImageName = document.querySelector('.popup-image__caption'),
-editPhotoButton = document.querySelector('.profile__edit-photo');
+editPhotoButton = document.querySelector('.profile__edit-photo'),
+addSubmitButton = formCardAdd.querySelector('.button_type_save');
+const config = {
+  inputSelector: '.form__item',
+  buttonSelector: '.button_type_save',
+  errorClass: 'form__item_error',
+};
 
 export {formProfileEdit, formCardAdd, nameInput, activityInput, cardnameInput, linkInput, profileName, profileActivity, profileAvatar,
   linkPhotoInput, cardsList, buttonProfileEdit, buttonCardsAdd, buttonProfilePhotoEdit, formDeleteCard, profileEditPopup, cardsAddPopup,
-  imageOpenPopup, popupImage, allPopups, profileEditPhotoPopup, cardDeletePopup, popupImageName, formProfilePhotoEdit, editPhotoButton}
+  imageOpenPopup, popupImage, allPopups, profileEditPhotoPopup, cardDeletePopup, popupImageName, formProfilePhotoEdit, editPhotoButton,
+  addSubmitButton, config}
