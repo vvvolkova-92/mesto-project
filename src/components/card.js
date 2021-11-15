@@ -27,7 +27,7 @@ function createCard(cardData) {
   })
 
   buttonLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('button_type_like-active'); //если убрать эту строчку в .then все ломается
+    evt.target.classList.toggle('button_type_like-active'); //если убрать эту строчку в .then все 
     if (buttonLike.classList.contains('button_type_like-active')) {
       likesCard(_id)
         .then(newlike => {

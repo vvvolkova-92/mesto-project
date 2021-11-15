@@ -1,6 +1,7 @@
 import {closeByEscape, changeProfile, changeProfilePhoto, loadProccess} from './utils.js'
 import {addNewCard} from './card.js'
-import {formProfileEdit, formCardAdd, profileEditPopup, formProfilePhotoEdit} from './constants.js'
+import {formProfileEdit, formCardAdd, profileEditPopup, formProfilePhotoEdit, profileActivity, profileName,
+  nameInput, activityInput} from './constants.js'
 //попапы
 
 
@@ -17,7 +18,9 @@ function closePopup(popup) {
 
 //ф-ия открытия попапа профайла
 function openProfilePopup () {
-  openPopup(profileEditPopup); //вызов ф-ии
+  nameInput.value = profileName.textContent;
+  activityInput.value = profileActivity.textContent;
+  openPopup(profileEditPopup); 
 }
 
 
